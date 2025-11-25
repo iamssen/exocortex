@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string"
+      },
+      "usdkrw": {
+        "type": "number"
+      },
+      "jpykrw": {
+        "type": "number"
+      },
+      "spy": {
+        "type": "number"
+      }
+    },
+    "required": ["title", "usdkrw", "jpykrw", "spy"]
+  }
+}
