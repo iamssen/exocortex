@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "채권 (Bonds)",
+  "description": "보유 중인 채권 자산 목록입니다.",
+  "type": "array",
+  "items": {
+    "title": "채권 정보",
+    "description": "개별 채권의 상세 정보입니다.",
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "채권명",
+        "description": "채권의 이름입니다.",
+        "type": "string",
+        "examples": ["미국 단기 국채 26년 1월"]
+      },
+      "amount": {
+        "title": "액면가",
+        "description": "채권의 액면 금액입니다.",
+        "type": "number",
+        "examples": [112500]
+      },
+      "purchase_price": {
+        "title": "매수가",
+        "description": "실제 매수한 가격입니다.",
+        "type": "number",
+        "examples": [111007]
+      },
+      "purchase_date": {
+        "title": "매수일",
+        "description": "채권을 매수한 날짜입니다.",
+        "type": "string",
+        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+        "examples": ["2025-11-26"]
+      },
+      "maturity_date": {
+        "title": "만기일",
+        "description": "채권의 만기 날짜입니다.",
+        "type": "string",
+        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+        "examples": ["2026-11-26"]
+      },
+      "coupons": {
+        "title": "이자 (Coupon)",
+        "description": "지급될 이자 목록입니다.",
+        "type": "array",
+        "items": {
+          "title": "이자 지급 정보",
+          "description": "이자 지급일과 금액입니다.",
+          "type": "object",
+          "properties": {
+            "date": {
+              "title": "지급일",
+              "description": "이자가 지급되는 날짜입니다.",
+              "type": "string",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+              "examples": ["2025-11-26"]
+            },
+            "amount": {
+              "title": "이자 금액",
+              "description": "지급되는 이자 금액입니다.",
+              "type": "number",
+              "examples": [618]
+            }
+          },
+          "required": ["date", "amount"]
+        }
+      }
+    },
+    "required": [
+      "name",
+      "amount",
+      "purchase_price",
+      "purchase_date",
+      "maturity_date",
+      "coupons"
+    ]
+  }
+}

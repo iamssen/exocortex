@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "매매 기록 (Trade Log)",
+  "description": "매매한 주식이나 ETF 등의 기록입니다.",
+  "type": "array",
+  "items": {
+    "title": "매매 기록",
+    "description": "개별 매매 기록의 상세 정보입니다.",
+    "type": "object",
+    "properties": {
+      "symbol": {
+        "title": "티커/심볼",
+        "description": "주식이나 자산의 식별 코드입니다.",
+        "type": "string",
+        "examples": ["AAPL", "MSFT", "BTC-USD"]
+      },
+      "date": {
+        "title": "매매일",
+        "description": "자산을 매매한 날짜입니다.",
+        "type": "string",
+        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+        "examples": ["2025-11-26"]
+      },
+      "price": {
+        "title": "매매 단가",
+        "description": "1주당 매매 가격입니다.",
+        "type": "number",
+        "examples": [130.6]
+      },
+      "quantity": {
+        "title": "매매 수량",
+        "description": "매매 수량입니다.",
+        "type": "number",
+        "examples": [100, -100]
+      },
+      "comment": {
+        "title": "비고",
+        "description": "증권사명이나 메모 등 추가 정보입니다.",
+        "type": "string",
+        "examples": ["NH 투자증권"]
+      }
+    },
+    "required": ["symbol", "date", "price", "quantity"]
+  }
+}

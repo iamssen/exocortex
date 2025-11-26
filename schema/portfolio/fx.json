@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "환전 내역 (Foreign Exchange)",
+  "description": "외화 환전 내역 목록입니다.",
+  "type": "array",
+  "items": {
+    "title": "환전 기록",
+    "description": "개별 환전 거래 정보입니다.",
+    "type": "object",
+    "properties": {
+      "date": {
+        "title": "환전일",
+        "description": "환전이 이루어진 날짜입니다.",
+        "type": "string",
+        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+        "examples": ["2025-11-26"]
+      },
+      "price": {
+        "title": "적용 환율",
+        "description": "환전 시 적용된 환율입니다.",
+        "type": "number",
+        "examples": [1212.12]
+      },
+      "quantity": {
+        "title": "환전 금액",
+        "description": "환전한 외화 금액입니다.",
+        "type": "number",
+        "examples": [354000]
+      }
+    },
+    "required": ["date", "price", "quantity"]
+  }
+}

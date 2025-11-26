@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "금융 시뮬레이션 (Simulation)",
+  "description": "다양한 시나리오에 따른 환율 및 자산 가격 시뮬레이션 목록입니다.",
+  "type": "array",
+  "items": {
+    "title": "시나리오",
+    "description": "개별 시뮬레이션 시나리오입니다.",
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "시나리오명",
+        "description": "시뮬레이션 시나리오의 이름입니다.",
+        "type": "string",
+        "examples": ["Good Vision", "Bad Vision"]
+      },
+      "usdkrw": {
+        "title": "원달러 환율",
+        "description": "예상되는 USD/KRW 환율입니다.",
+        "type": "number",
+        "examples": [1300, 1500]
+      },
+      "jpykrw": {
+        "title": "원엔 환율",
+        "description": "예상되는 JPY/KRW 환율입니다.",
+        "type": "number",
+        "examples": [9, 11]
+      },
+      "spy": {
+        "title": "SPY 가격",
+        "description": "S&P 500 ETF(SPY)의 예상 가격($)입니다.",
+        "type": "number",
+        "examples": [650, 430]
+      }
+    },
+    "required": ["title", "usdkrw", "jpykrw", "spy"]
+  }
+}

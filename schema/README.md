@@ -1,60 +1,58 @@
-# VSCode schemas setting
+# Schemas settings
 
-- [yaml.schemas](/Users/ssen/Library/Application Support/Code/User/settings.json#L142)
+- [VSCode](~/Library/Application Support/Code/User/settings.json#L142)
+- [Antigravity](~/Library/Application Support/Antigravity/settings.json#L139)
 
 # Body
 
-## [kcal.json](./kcal.json)
+## [kcal.json](./body/kcal.json)
 
-- [getDayKcal#RawData](../src/@data/fetcher/body/getDayKcal.ts#L47)
+- [body.input#KcalInput](../model/body/body.input.ts#L3)
 
-## [skin.json](./skin.json)
+## [skin.json](./body/skin.json)
 
-- [body#DaySkin](../src/@data/types/body.ts#L37)
+- [body#DaySkin](../model/body/body.ts#L46)
 
-# Finance
+# Portfolio
 
-## [balance.json](./balance.json)
+## [balance.json](./portfolio/balance.json)
 
-- [getBalances#Source](../src/@data/fetcher/finance/getBalances.ts#L69)
+- [balance.input#BalanceInput](../model/portfolio/balance.input.ts#L3)
 
-## [bond.json](./bond.json)
+## [bond.json](./portfolio/bond.json)
 
-- [getBond#Source](../src/@data/fetcher/finance/getBond.ts#L87)
+- [bond.input#BondInput](../model/portfolio/bond.input.ts#L3)
 
-## [deposit.json](./deposit.json)
+## [deposit.json](./portfolio/deposit.json)
 
-- [getDepositKR#Source](../src/@data/fetcher/finance/getDepositKR.ts#L62)
-- [gendata#Deposit](../src/@data/types/gendata.ts#L101)
+- [deposit.input#DepositInput](../model/portfolio/deposit.input.ts#L3)
 
-## [fx.json](./fx.json)
+## [fx.json](./portfolio/fx.json)
 
-- [getFX#Source](../src/@data/fetcher/finance/getFX.ts#L33)
+- [fx.input#FXInput](../model/portfolio/fx.input.ts#L3)
 
-## [holding.json](./holding.json)
+## [holding.json](./portfolio/holding.json)
 
-- [gendata#Trade](../src/@data/types/gendata.ts#L122)
+- [trade#Trade](../model/portfolio/trade.ts#L3)
 
-## [housing.json](./housing.json)
+## [housing.json](./portfolio/housing.json)
 
-- [getHousing#Source](../src/@data/fetcher/finance/getHousing.ts#L30)
+- [housing.input#HousingInput](../model/portfolio/housing.input.ts#L3)
 
-## [simulation.json](./simulation.json)
+## [simulation.json](./portfolio/simulation.json)
 
-- [finance-data#SimulationSource](../src/@data/fetcher/finance/finance-data.ts#L114)
-- [gendata#Simulation](../src/@data/types/gendata.ts#L139)
+- [simulation#Simulation](../model/portfolio/simulation.ts#L3)
 
-## [watch.json](./watch.json)
+## [watch.json](./portfolio/watch.json)
 
-- [finance-data#WatchSource](../src/@data/fetcher/finance/finance-data.ts#L113)
-- [gendata#Watch](../src/@data/types/gendata.ts#L130)
+- [watch.input#WatchInput](../model/portfolio/watch.input.ts#L3)
 
 # Utils
 
 ## [indicator.json](./indicator.json)
 
-- [event#EventIndicator](../src/@data/types/event.ts#L14)
+- [event#EventIndicator](../model/event.ts#L14)
 
 ## [link.json](./link.json)
 
-- [links#Link](../src/@data/types/links.ts#L1)
+- [links#Link](../model/links.ts#L1)

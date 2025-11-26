@@ -25,5 +25,5 @@
     "outDir": "dist",
     "rootDir": "."
   },
-  "include": ["lib.ts", "api.ts"]
+  "include": ["model/index.ts", "api/index.ts", "date-utils.ts"]
 }

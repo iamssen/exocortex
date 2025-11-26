@@ -4,8 +4,9 @@ import dts from 'rollup-plugin-dts';
 const config = [
   {
     input: {
-      lib: 'lib.ts',
-      api: 'api.ts',
+      'model': 'model/index.ts',
+      'api': 'api/index.ts',
+      'date-utils': 'date-utils/index.ts',
     },
     output: {
       dir: 'dist',
@@ -13,11 +14,13 @@ const config = [
       sourcemap: true,
     },
     plugins: [typescript()],
+    external: ['luxon'],
   },
   {
     input: {
-      lib: 'lib.ts',
-      api: 'api.ts',
+      'model': 'model/index.ts',
+      'api': 'api/index.ts',
+      'date-utils': 'date-utils/index.ts',
     },
     output: {
       dir: 'dist',
@@ -25,6 +28,7 @@ const config = [
       entryFileNames: '[name].d.ts',
     },
     plugins: [dts()],
+    external: ['luxon'],
   },
 ];
 

@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "관심 종목 감시 (Watch List)",
+  "description": "특정 종목(Key)에 대해 감시할 가격이나 지표 조건을 설정합니다.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "array",
+    "description": "해당 종목에 대한 감시 조건 목록입니다.",
+    "items": {
+      "title": "감시 조건",
+      "description": "가격, P/E, 52주 변동폭 등 다양한 감시 조건 중 하나를 설정합니다.",
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "high_price": {
+              "type": "number",
+              "description": "기대 고점 가격",
+              "examples": [450]
+            }
+          },
+          "required": ["high_price"]
+        },
+        {
+          "properties": {
+            "low_price": {
+              "type": "number",
+              "description": "기대 저점 가격",
+              "examples": [350]
+            }
+          },
+          "required": ["low_price"]
+        },
+        {
+          "properties": {
+            "high_pe": {
+              "type": "number",
+              "description": "기대 고점 P/E",
+              "examples": [25]
+            }
+          },
+          "required": ["high_pe"]
+        },
+        {
+          "properties": {
+            "low_pe": {
+              "type": "number",
+              "description": "기대 저점 P/E",
+              "examples": [20]
+            }
+          },
+          "required": ["low_pe"]
+        },
+        {
+          "properties": {
+            "high_52week": {
+              "type": "number",
+              "description": "기대 52주차 고점",
+              "examples": [0.9]
+            }
+          },
+          "required": ["high_52week"]
+        },
+        {
+          "properties": {
+            "low_52week": {
+              "type": "number",
+              "description": "기대 52주차 저점",
+              "examples": [0.2]
+            }
+          },
+          "required": ["low_52week"]
+        }
+      ]
+    }
+  }
+}

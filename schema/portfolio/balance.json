@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "자산 잔액 관리 (Balance Sheet)",
+  "description": "통화 코드(KRW, USD 등)를 키(Key)로 사용하여 통화별 자산 목록을 관리하는 데이터 구조입니다.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "array",
+    "description": "특정 통화(Currency)에 속하는 자산 항목들의 리스트입니다.",
+    "examples": ["KRW", "USD", "JPY"],
+    "items": {
+      "title": "자산 항목",
+      "description": "개별 금융 자산의 상세 정보입니다.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "자산명",
+          "description": "은행명, 계좌 별칭, 혹은 자산의 구체적인 이름입니다.",
+          "examples": ["카카오뱅크", "토스증권", "현금"]
+        },
+        "amount": {
+          "title": "금액",
+          "description": "자산의 현재 가치입니다. 확정된 숫자나 간단한 수식(문자열)을 입력할 수 있습니다.",
+          "oneOf": [
+            {
+              "title": "수식 (String)",
+              "type": "string",
+              "description": "여러 건을 합산해야 할 때 덧셈 수식 등을 문자열로 입력합니다.",
+              "examples": ["1000 + 2000", "50000 + 1000 + 500"]
+            },
+            {
+              "title": "확정 금액 (Number)",
+              "type": "number",
+              "description": "계산이 필요 없는 최종 숫자 금액입니다.",
+              "examples": [1000000, 150.5]
+            }
+          ]
+        }
+      },
+      "required": ["name", "amount"]
+    }
+  }
+}

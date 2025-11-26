@@ -1,19 +1,23 @@
 {
   "name": "@iamssen/exocortex",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "author": "SSen",
   "license": "MIT",
-  "main": "./dist/lib.js",
-  "types": "./dist/lib.d.ts",
+  "main": "./dist/model.js",
+  "types": "./dist/model.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/lib.d.ts",
-      "import": "./dist/lib.js"
+      "types": "./dist/model.d.ts",
+      "import": "./dist/model.js"
     },
     "./api": {
       "types": "./dist/api.d.ts",
       "import": "./dist/api.js"
+    },
+    "./date-utils": {
+      "types": "./dist/date-utils.d.ts",
+      "import": "./dist/date-utils.js"
     }
   },
   "files": [
@@ -25,16 +29,16 @@
   "repository": "https://github.com/iamssen/exocortex",
   "scripts": {
     "type-check": "tsc --watch --noEmit",
-    "test": "node --test",
+    "test": "node --import tsx --test \"**/*.test.ts\"",
     "format": "prettier --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}\"",
     "lint": "eslint .",
-    "build": "rimraf dist && rollup -c",
+    "build": "npm run lint && npm run test && rimraf dist && rollup -c",
     "precommit": "lint-staged",
     "prepare": "husky"
   },
   "lint-staged": {
     "src/**/*.{ts,mts,cts,tsx}": [
-      "cross-env CI=true node --test",
+      "cross-env CI=true node --import tsx --test",
       "prettier --write",
       "eslint --max-warnings 0"
     ],
@@ -46,9 +50,14 @@
       "prettier --write"
     ]
   },
+  "dependencies": {
+    "luxon": "^3.7.2"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@types/luxon": "~3.7.1",
+    "@types/node": "^24.10.1",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^7.0.1",
@@ -61,8 +70,8 @@
     "rollup": "^4.53.3",
     "rollup-plugin-dts": "^6.2.3",
     "tslib": "^2.8.1",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.47.0",
-    "vitest": "^4.0.13"
+    "typescript-eslint": "^8.47.0"
   }
 }

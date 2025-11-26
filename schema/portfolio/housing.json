@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "부동산/임대차 (Housing)",
+  "description": "보유 중인 부동산이나 임대차 보증금 자산 목록입니다.",
+  "type": "array",
+  "items": {
+    "title": "부동산 자산",
+    "description": "개별 부동산 또는 보증금 정보입니다.",
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "자산명",
+        "description": "부동산이나 보증금의 이름입니다.",
+        "type": "string",
+        "examples": ["방배 아파트", "전세보증금"]
+      },
+      "amount": {
+        "title": "금액",
+        "description": "자산의 평가액 또는 보증금 액수입니다.",
+        "type": "number",
+        "examples": [850000000]
+      }
+    },
+    "required": ["name", "amount"]
+  }
+}
