@@ -8,3 +8,4 @@
   - [date-utils](./date-utils): Date 관련 유틸리티 함수들
 - 자동 생성
   - [gendoc](./gendoc): AI가 읽을 수 있는 형식으로 자동 생성되는 문서들.
+  - [review](./review): AI가 Code Review를 수행한 결과 문서들.
