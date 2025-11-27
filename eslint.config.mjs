@@ -1,10 +1,10 @@
 import js from '@eslint/js';
-import globals from 'globals';
+import prettier from 'eslint-config-prettier';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import tseslint from 'typescript-eslint';
 import unicorn from 'eslint-plugin-unicorn';
-import prettier from 'eslint-config-prettier';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default [
   {
@@ -83,17 +83,5 @@ export default [
     // disable type-aware linting on JS files
     files: ['**/*.{js,jsx,mjs,cjs}'],
     rules: tseslint.configs.disableTypeChecked.rules,
-  },
-  {
-    files: [`**/@ssen/**/*.{ts,tsx,mts,cts}`],
-    rules: {
-      'no-restricted-imports': ['error', { patterns: ['@data/*', '@ui/*'] }],
-    },
-  },
-  {
-    files: [`**/@data/**/*.{ts,tsx,mts,cts}`],
-    rules: {
-      'no-restricted-imports': ['error', { patterns: ['@ui/*'] }],
-    },
   },
 ];
