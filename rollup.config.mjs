@@ -7,6 +7,7 @@ const config = [
       'model': 'model/index.ts',
       'server': 'server/index.ts',
       'date-utils': 'date-utils/index.ts',
+      'projector': 'projector/index.ts',
     },
     output: {
       dir: 'dist',
@@ -21,6 +22,7 @@ const config = [
       'model': 'model/index.ts',
       'server': 'server/index.ts',
       'date-utils': 'date-utils/index.ts',
+      'projector': 'projector/index.ts',
     },
     output: {
       dir: 'dist',

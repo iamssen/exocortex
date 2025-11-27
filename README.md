@@ -4,6 +4,7 @@
   - [model](./model): System의 전반적인 구조를 정의하는 TypeScript 형식들
   - [server](./server): Server가 구현해야 하는 API들을 정의하는 파일들
   - [schema](./schema): JSON/YAML 데이터를 작성하는 것을 돕는 Json Schema 형식들
+  - [projector](./projector): 데이터를 특정 필요에 따라 변환하는 함수들
 - 유틸리티
   - [date-utils](./date-utils): Date 관련 헬퍼 함수들
 - 관리

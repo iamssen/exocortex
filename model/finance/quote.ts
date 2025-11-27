@@ -17,7 +17,7 @@ export type StockExchangeCode = 'KS' | 'KQ' | 'NYS' | 'NSQ' | 'TYO' | 'AMX';
 
 export type MarketState = 'REGULAR' | 'CLOSED' | 'PRE';
 
-export interface QuoteSource {
+export interface PlatformMap {
   yahoo?: string;
   google?: string;
   naver?: string;
@@ -33,8 +33,8 @@ export interface QuoteInfo {
   stockExchangeCode?: StockExchangeCode;
   timezone: Timezone;
 
-  symbols: QuoteSource;
-  links: QuoteSource;
+  symbols: PlatformMap;
+  links: PlatformMap;
 
   forceDependsOn?: 'yahoo';
 }
@@ -46,7 +46,7 @@ export interface Quote extends QuoteInfo {
   change: number;
   changePercent: Percent;
   previousClose: number;
-  source: object;
+  source: unknown;
 }
 
 export interface QuoteRecord {

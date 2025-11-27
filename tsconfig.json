@@ -25,5 +25,10 @@
     "outDir": "dist",
     "rootDir": "."
   },
-  "include": ["model/index.ts", "server/index.ts", "date-utils.ts"]
+  "include": [
+    "model/index.ts",
+    "server/index.ts",
+    "date-utils.ts",
+    "projector/index.ts"
+  ]
 }
