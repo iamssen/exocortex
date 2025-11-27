@@ -36,6 +36,14 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build
-      - run: npm publish
+      - run: |
+          VERSION=$(node -p "require('./package.json').version")
+          PUBLISHED_VERSION=$(npm view @iamssen/exocortex version 2>/dev/null || echo "0.0.0")
+
+          if [ "$VERSION" != "$PUBLISHED_VERSION" ]; then
+            npm publish
+          else
+            echo "Version $VERSION already published. Skipping."
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
