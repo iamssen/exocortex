@@ -6,8 +6,8 @@ import ts from 'typescript';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const sourceFile = path.join(__dirname, 'server/index.ts');
-const outputFile = path.join(__dirname, 'gendoc/api.yaml');
+const sourceFile = path.join(__dirname, '../server/index.ts');
+const outputFile = path.join(__dirname, '../gendoc/api.yaml');
 
 // 타입 내 속성의 타입을 가져오는 헬퍼 함수
 function getMemberType(

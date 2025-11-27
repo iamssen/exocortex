@@ -60,7 +60,7 @@
   return: "VersionData<Moneybook>"
 "my/summary":
   description: "Finance Summary"
-  return: "VersionData<Summaries>"
+  return: "VersionData<PortfolioSummaries>"
 "my/life-indicator":
   description: "Life Indicator"
   return: "VersionData<EventIndicator[]>"
