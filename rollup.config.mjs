@@ -5,7 +5,7 @@ const config = [
   {
     input: {
       'model': 'model/index.ts',
-      'api': 'api/index.ts',
+      'server': 'server/index.ts',
       'date-utils': 'date-utils/index.ts',
     },
     output: {
@@ -19,7 +19,7 @@ const config = [
   {
     input: {
       'model': 'model/index.ts',
-      'api': 'api/index.ts',
+      'server': 'server/index.ts',
       'date-utils': 'date-utils/index.ts',
     },
     output: {

@@ -1,6 +1,6 @@
 import type { Iso8601, JPY, KRW, Percent, USD } from '../nominal-types.js';
 
-export interface Summary {
+export interface PortfolioSummary {
   /** financeData.fx.usd.purchaseAmount */
   purchaseUSD: USD;
   purchaseUSDKRW: KRW;
@@ -88,4 +88,4 @@ export interface Summary {
   };
 }
 
-export type Summaries = Record<Iso8601, Summary>;
+export type PortfolioSummaries = Record<Iso8601, PortfolioSummary>;

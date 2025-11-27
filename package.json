@@ -1,6 +1,6 @@
 {
   "name": "@iamssen/exocortex",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "author": "SSen",
   "license": "MIT",
@@ -11,9 +11,9 @@
       "types": "./dist/model.d.ts",
       "import": "./dist/model.js"
     },
-    "./api": {
-      "types": "./dist/api.d.ts",
-      "import": "./dist/api.js"
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
     },
     "./date-utils": {
       "types": "./dist/date-utils.d.ts",
@@ -48,6 +48,10 @@
     ],
     "src/**/*.{json,css}": [
       "prettier --write"
+    ],
+    "server/**/*.{ts,mts,cts,tsx}": [
+      "tsx gendoc.api.ts",
+      "git add gendoc/api.yaml"
     ]
   },
   "dependencies": {

@@ -23,8 +23,6 @@ export * from './finance/quote.js';
 export * from './finance/quote.projection.js';
 export * from './finance/valuation.js';
 
-export * from './finance-summary/summary.js';
-
 export * from './journal/journal.js';
 
 export * from './moneybook/moneybook.js';
@@ -48,6 +46,8 @@ export * from './portfolio/trade.js';
 export * from './portfolio/trade.projection.js';
 export * from './portfolio/watch.input.js';
 export * from './portfolio/watch.js';
+
+export * from './portfolio-summary/portfolio-summary.js';
 
 export * from './event.js';
 export * from './geolocation.js';
