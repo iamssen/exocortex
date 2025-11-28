@@ -1,15 +1,22 @@
 # Directories
 
-- 구조
-  - [model](./model): System의 전반적인 구조를 정의하는 TypeScript 형식들
-  - [server](./server): Server가 구현해야 하는 API들을 정의하는 파일들
-  - [schema](./schema): JSON/YAML 데이터를 작성하는 것을 돕는 Json Schema 형식들
-  - [projector](./projector): 데이터를 특정 필요에 따라 변환하는 함수들
-- 유틸리티
-  - [date-utils](./date-utils): Date 관련 헬퍼 함수들
-- 관리
-  - [prompts](./prompts): AI 실행을 위한 프롬프트 문서들
-  - [scripts](./scripts): 자동화 등 유틸리티 스크립트들
-- 자동 생성
-  - [gendoc](./gendoc): AI에게 제공하기 위해 생성되는 문서들.
-  - [review](./review): AI가 Code Review를 수행한 결과 문서들.
+- TypeScript 개발 (Development)
+  - [model](./model): 핵심 도메인 모델 및 타입 정의
+  - [server](./server): API 인터페이스 및 서버 설정
+  - [projector](./projector): 데이터 변환 및 가공 로직
+  - [date-utils](./date-utils): 날짜/시간 처리 유틸리티
+- 설정 및 도구 (Configuration & Tooling)
+  - [schema](./schema): VSCode 자동완성 및 데이터 검증용 JSON Schema
+- 운영 및 자동화 (Operations)
+  - [scripts](./scripts): 빌드, 문서 생성 등 내부 자동화 스크립트
+- AI 어시스턴트 (AI Assistance)
+  - [prompts](./prompts): AI 작업 지시 프롬프트
+  - [contexts](./contexts): AI 참고용 문맥(Context) 자료
+  - [reviews](./reviews): AI 코드 리뷰 결과
+
+# Exports
+
+- `@iamssen/exocortex`: Core Domain Model
+- `@iamssen/exocortex/server`: Server API & Config
+- `@iamssen/exocortex/projector`: Data Projectors
+- `@iamssen/exocortex/date-utils`: Date Utilities

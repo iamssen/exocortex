@@ -55,4 +55,4 @@
 
 ## [link.json](./link.json)
 
-- [links#Link](../model/links.ts#L1)
+- [links#Link](../model/link.ts#L1)

@@ -55,7 +55,7 @@
     ],
     "server/**/*.{ts,mts,cts,tsx}": [
       "tsx gendoc.api.ts",
-      "git add gendoc/api.yaml"
+      "git add contexts/api.yaml"
     ]
   },
   "dependencies": {

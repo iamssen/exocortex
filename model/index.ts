@@ -51,7 +51,7 @@ export * from './portfolio-summary/portfolio-summary.js';
 
 export * from './event.js';
 export * from './geolocation.js';
-export * from './links.js';
+export * from './link.js';
 export * from './nominal-types.js';
 export * from './rescuetime.js';
 export * from './weather.js';
