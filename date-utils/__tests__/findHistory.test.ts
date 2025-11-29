@@ -1,6 +1,6 @@
 import assert from 'node:assert';
 import { describe, test } from 'node:test';
-import type { ASC, Iso8601 } from '../../types/nominal-types.js';
+import type { ASC, Iso8601 } from '../../model/nominal-types.js';
 import { findHistory } from '../findHistory.js';
 
 interface Item {

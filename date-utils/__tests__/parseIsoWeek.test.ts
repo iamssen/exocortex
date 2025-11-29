@@ -1,6 +1,6 @@
 import assert from 'node:assert';
 import { describe, test } from 'node:test';
-import type { IsoWeek } from '../../types/nominal-types.js';
+import type { IsoWeek } from '../../model/nominal-types.js';
 import { parseIsoWeek } from '../parseIsoWeek.js';
 
 describe('parseIsoWeek()', () => {

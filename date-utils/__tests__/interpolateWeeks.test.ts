@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 import assert from 'node:assert';
 import { describe, test } from 'node:test';
-import type { Iso8601 } from '../../types/nominal-types.js';
+import type { Iso8601 } from '../../model/nominal-types.js';
 import { interpolateWeeks } from '../interpolateWeeks.js';
 
 describe('interpolateWeeks()', () => {

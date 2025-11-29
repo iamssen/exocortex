@@ -29,6 +29,7 @@
     "model/index.ts",
     "server/index.ts",
     "date-utils.ts",
-    "projector/index.ts"
+    "projector/index.ts",
+    "__tests__/**/*"
   ]
 }
