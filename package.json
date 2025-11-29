@@ -1,6 +1,6 @@
 {
   "name": "@iamssen/exocortex",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "author": "SSen",
   "license": "MIT",
@@ -20,8 +20,8 @@
       "import": "./dist/date-utils.js"
     },
     "./projector": {
-      "types": "./dist/projector/index.d.ts",
-      "import": "./dist/projector/index.js"
+      "types": "./dist/projector.d.ts",
+      "import": "./dist/projector.js"
     }
   },
   "files": [
