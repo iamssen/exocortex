@@ -13,9 +13,18 @@
   ],
   "patternProperties": {
     "^[0-9]{4}-[0-9]{2}-[0-9]{2}$": {
+      "title": "일별 기록",
+      "description": "해당 날짜의 식단과 섭취 칼로리 기록입니다.",
       "type": "object",
       "additionalProperties": {
-        "type": "number"
+        "title": "식사 내역",
+        "description": "식사 시간이나 끼니 종류 (예: '9시 아침', '점심')",
+        "type": "object",
+        "additionalProperties": {
+          "title": "음식 및 칼로리",
+          "description": "섭취한 음식 이름과 칼로리 (예: '사과': 50)",
+          "type": "number"
+        }
       }
     }
   },
