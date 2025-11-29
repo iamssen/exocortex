@@ -10,9 +10,9 @@
 - 운영 및 자동화 (Operations)
   - [scripts](./scripts): 빌드, 문서 생성 등 내부 자동화 스크립트
 - AI 어시스턴트 (AI Assistance)
-  - [prompts](./prompts): AI 작업 지시 프롬프트
   - [contexts](./contexts): AI 참고용 문맥(Context) 자료
   - [reviews](./reviews): AI 코드 리뷰 결과
+  - [.agent/workflows](./.agent/workflows): AI 작업 지시 워크플로우
 
 # Exports
 
