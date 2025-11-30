@@ -33,7 +33,7 @@
   "repository": "https://github.com/iamssen/exocortex",
   "scripts": {
     "type-check": "tsc --watch --noEmit",
-    "test": "node --import tsx --test --test-timeout=5000 \"**/*.test.ts\"",
+    "test": "vitest run",
     "format": "prettier --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}\"",
     "lint": "eslint .",
     "build": "npm run lint && npm run test && rimraf dist && rollup -c",
@@ -42,7 +42,7 @@
   },
   "lint-staged": {
     "**/*.{ts,mts,cts,tsx}": [
-      "node --import tsx --test --test-timeout=5000",
+      "vitest related",
       "prettier --write",
       "eslint --max-warnings 0"
     ],
@@ -80,6 +80,7 @@
     "tslib": "^2.8.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.47.0"
+    "typescript-eslint": "^8.47.0",
+    "vitest": "^4.0.14"
   }
 }

@@ -1,18 +1,16 @@
-import assert from 'node:assert';
-import { describe, test } from 'node:test';
+import { describe, expect, test } from 'vitest';
 import type { Deposit, Iso8601, KRW } from '../../model/index.js';
 import { sumDepositsGain } from '../sumDepositsGain.js';
 
 describe('sumDepositsGain()', () => {
   test('should match deposits gain', () => {
-    assert.strictEqual(
+    expect(
       sumDepositsGain(
         deposits,
         '2023-10-01' as Iso8601,
         '2024-01-31' as Iso8601,
       ).interestGain,
-      4_238_460 + 3_807_000,
-    );
+    ).toBe(4_238_460 + 3_807_000);
   });
 });
 

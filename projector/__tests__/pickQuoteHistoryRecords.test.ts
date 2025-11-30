@@ -1,7 +1,6 @@
-import assert from 'node:assert';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { describe, test } from 'node:test';
+import { describe, expect, test } from 'vitest';
 import type { ASC, Iso8601, QuoteRecord } from '../../model/index.js';
 import { pickQuoteHistoryRecords } from '../pickQuoteHistoryRecords.js';
 
@@ -37,6 +36,6 @@ describe('pickHistoryItems()', () => {
 
     const result = pickQuoteHistoryRecords(krw, findingDates, baseDate);
 
-    assert.deepStrictEqual(structuredClone(result), expected);
+    expect(structuredClone(result)).toEqual(expected);
   });
 });

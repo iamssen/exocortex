@@ -1,5 +1,4 @@
-import assert from 'node:assert';
-import { describe, test } from 'node:test';
+import { describe, expect, test } from 'vitest';
 import type { Iso8601 } from '../../model/nominal-types.js';
 import { groupByWeek } from '../groupByWeek.js';
 
@@ -11,16 +10,16 @@ describe('groupByWeek()', () => {
       .toReversed();
 
     const asc = groupByWeek(list, 'date');
-    assert.strictEqual(asc.length, 29);
-    assert.strictEqual(asc[0].week, '2023-W06');
-    assert.strictEqual(asc[0].children[0], null);
-    assert.strictEqual(asc[0].children[1]?.date, '2023-02-07');
+    expect(asc.length).toBe(29);
+    expect(asc[0].week).toBe('2023-W06');
+    expect(asc[0].children[0]).toBe(null);
+    expect(asc[0].children[1]?.date).toBe('2023-02-07');
 
     const desc = groupByWeek(list, 'date', 'DESC');
-    assert.strictEqual(desc.length, 29);
-    assert.strictEqual(desc[0].week, '2023-W34');
-    assert.strictEqual(desc[0].children[0]?.date, '2023-08-21');
-    assert.strictEqual(desc[0].children[1], null);
+    expect(desc.length).toBe(29);
+    expect(desc[0].week).toBe('2023-W34');
+    expect(desc[0].children[0]?.date).toBe('2023-08-21');
+    expect(desc[0].children[1]).toBe(null);
   });
 });
 

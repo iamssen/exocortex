@@ -1,27 +1,24 @@
-import assert from 'node:assert';
-import { describe, test } from 'node:test';
+import { describe, expect, test } from 'vitest';
 import type { Bond, Iso8601, KRW } from '../../model/index.js';
 import { sumBondsGain } from '../sumBondsGain.js';
 
 describe('sumBondsGain()', () => {
   test('should match bonds gain', () => {
-    assert.deepStrictEqual(
+    expect(
       sumBondsGain(bonds, '2023-01-01' as Iso8601, '2023-12-31' as Iso8601),
-      {
-        maturityGain: 0,
-        couponsGain:
-          90_332 * 4 + 242_117 * 4 + 915_418 * 2 + 226_811 * 2 + 234_540 * 2,
-      },
-    );
+    ).toEqual({
+      maturityGain: 0,
+      couponsGain:
+        90_332 * 4 + 242_117 * 4 + 915_418 * 2 + 226_811 * 2 + 234_540 * 2,
+    });
 
-    assert.deepStrictEqual(
+    expect(
       sumBondsGain(bonds, '2023-01-01' as Iso8601, '2024-01-31' as Iso8601),
-      {
-        maturityGain: 31_149_000 - 29_999_601,
-        couponsGain:
-          90_332 * 5 + 242_117 * 4 + 915_418 * 2 + 226_811 * 2 + 234_540 * 2,
-      },
-    );
+    ).toEqual({
+      maturityGain: 31_149_000 - 29_999_601,
+      couponsGain:
+        90_332 * 5 + 242_117 * 4 + 915_418 * 2 + 226_811 * 2 + 234_540 * 2,
+    });
   });
 });
 

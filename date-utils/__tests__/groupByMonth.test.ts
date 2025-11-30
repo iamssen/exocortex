@@ -1,5 +1,4 @@
-import assert from 'node:assert';
-import { describe, test } from 'node:test';
+import { describe, expect, test } from 'vitest';
 import type { Iso8601 } from '../../model/nominal-types.js';
 import { groupByMonth } from '../groupByMonth.js';
 
@@ -11,14 +10,14 @@ describe('groupByMonth()', () => {
       .toReversed();
 
     const asc = groupByMonth(list, 'date');
-    assert.strictEqual(asc.length, 7);
-    assert.strictEqual(asc[0].month, '2023-02-01');
-    assert.strictEqual(asc[0].children[0].date, '2023-02-07');
+    expect(asc.length).toBe(7);
+    expect(asc[0].month).toBe('2023-02-01');
+    expect(asc[0].children[0].date).toBe('2023-02-07');
 
     const desc = groupByMonth(list, 'date', 'DESC', 'ASC');
-    assert.strictEqual(desc.length, 7);
-    assert.strictEqual(desc[0].month, '2023-08-01');
-    assert.strictEqual(desc[0].children[0].date, '2023-08-01');
+    expect(desc.length).toBe(7);
+    expect(desc[0].month).toBe('2023-08-01');
+    expect(desc[0].children[0].date).toBe('2023-08-01');
   });
 });
 

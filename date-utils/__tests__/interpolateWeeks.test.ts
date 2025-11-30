@@ -1,6 +1,5 @@
 import { DateTime } from 'luxon';
-import assert from 'node:assert';
-import { describe, test } from 'node:test';
+import { describe, expect, test } from 'vitest';
 import type { Iso8601 } from '../../model/nominal-types.js';
 import { interpolateWeeks } from '../interpolateWeeks.js';
 
@@ -11,13 +10,7 @@ describe('interpolateWeeks()', () => {
 
     const result = interpolateWeeks(from, to);
 
-    assert.strictEqual(
-      result[0],
-      DateTime.fromISO(from).toFormat(`kkkk-'W'WW`),
-    );
-    assert.strictEqual(
-      result.at(-1),
-      DateTime.fromISO(to).toFormat(`kkkk-'W'WW`),
-    );
+    expect(result[0]).toBe(DateTime.fromISO(from).toFormat(`kkkk-'W'WW`));
+    expect(result.at(-1)).toBe(DateTime.fromISO(to).toFormat(`kkkk-'W'WW`));
   });
 });

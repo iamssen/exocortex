@@ -1,6 +1,5 @@
 import { DateTime } from 'luxon';
-import assert from 'node:assert';
-import { describe, test } from 'node:test';
+import { describe, expect, test } from 'vitest';
 import type { Iso8601 } from '../../model/nominal-types.js';
 import { findStartIndex } from '../findStartIndex.js';
 
@@ -16,10 +15,10 @@ describe('findStartIndex()', () => {
 
     const fn = findStartIndex<Iso8601>((date) => DateTime.fromISO(date));
 
-    assert.strictEqual(fn(list, '2023-03-01' as Iso8601), 1);
-    assert.strictEqual(fn(list, '2023-03-07' as Iso8601), 2);
-    assert.strictEqual(fn(list, '2023-02-02' as Iso8601), 0);
-    assert.strictEqual(fn(list, '2023-09-02' as Iso8601), 4);
-    assert.strictEqual(fn(list, '1980-09-02' as Iso8601), 0);
+    expect(fn(list, '2023-03-01' as Iso8601)).toBe(1);
+    expect(fn(list, '2023-03-07' as Iso8601)).toBe(2);
+    expect(fn(list, '2023-02-02' as Iso8601)).toBe(0);
+    expect(fn(list, '2023-09-02' as Iso8601)).toBe(4);
+    expect(fn(list, '1980-09-02' as Iso8601)).toBe(0);
   });
 });

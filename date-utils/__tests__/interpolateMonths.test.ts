@@ -1,5 +1,4 @@
-import assert from 'node:assert';
-import { describe, test } from 'node:test';
+import { describe, expect, test } from 'vitest';
 import type { Iso8601 } from '../../model/nominal-types.js';
 import { interpolateMonths } from '../interpolateMonths.js';
 
@@ -10,7 +9,7 @@ describe('interpolateMonths()', () => {
 
     const result = interpolateMonths(from, to);
 
-    assert.deepStrictEqual(result, [
+    expect(result).toEqual([
       '2022-06-01',
       '2022-07-01',
       '2022-08-01',
