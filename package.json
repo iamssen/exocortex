@@ -41,16 +41,16 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "src/**/*.{ts,mts,cts,tsx}": [
+    "**/*.{ts,mts,cts,tsx}": [
       "node --import tsx --test --test-timeout=5000",
       "prettier --write",
       "eslint --max-warnings 0"
     ],
-    "src/**/*.{js,mjs,cjs,jsx}": [
+    "**/*.{js,mjs,cjs,jsx}": [
       "prettier --write",
       "eslint --max-warnings 0"
     ],
-    "src/**/*.{json,css}": [
+    "**/*.{json,css}": [
       "prettier --write"
     ],
     "server/**/*.{ts,mts,cts,tsx}": [
