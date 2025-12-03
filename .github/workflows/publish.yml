@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,13 +16,12 @@ jobs:
           node-version: 24
           cache: "npm"
       - run: npm ci
-      - run: npm run type-check
+      - run: tsc --noEmit
       - run: npm run lint
       - run: npm run test
-      - run: npm run build
 
   publish:
-    needs: build
+    needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:

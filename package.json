@@ -36,7 +36,7 @@
     "test": "vitest run",
     "format": "prettier --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}\"",
     "lint": "eslint .",
-    "build": "npm run lint && npm run test && rimraf dist && rollup -c",
+    "build": "rimraf dist && rollup -c",
     "precommit": "lint-staged",
     "prepare": "husky"
   },
