@@ -11,13 +11,3 @@ export type API<
   __routerPath__: RouterPath;
   __query__: Query;
 };
-
-export type StaticFile<
-  Description extends string,
-  Path extends string,
-  T,
-> = Path & {
-  __description__: Description;
-  __data__: T;
-  __apiPath__: Path;
-};

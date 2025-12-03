@@ -12,6 +12,7 @@ import type {
   Quote,
   QuoteEtfHoldings,
   QuoteHistory,
+  QuoteInfoIndex,
   QuoteRecord,
   QuoteStatistics,
   Ratio,
@@ -23,93 +24,114 @@ import type { API } from './types.js';
 
 export type FinanceAPI = [
   API<
+    'Quotes',
+    '/finance/quotes',
+    'finance/quotes',
+    VersionData<QuoteInfoIndex>
+  >,
+  API<
     '중앙은행 기준금리',
     '/finance/base-rates/:bank',
     `finance/base-rates/${CentralBank}`,
-    ExpiryData<InterestRateItem[]>
+    ExpiryData<InterestRateItem[]>,
+    { cacheOnly?: boolean }
   >,
   API<
     'Quote',
     '/finance/quote/:symbol',
     `finance/quote/${string}`,
-    ExpiryData<Quote>
+    ExpiryData<Quote>,
+    { cacheOnly?: boolean }
   >,
   API<
     'Quote Statistics',
     '/finance/quote-statistics/:symbol',
     `finance/quote-statistics/${string}`,
-    ExpiryData<QuoteStatistics>
+    ExpiryData<QuoteStatistics>,
+    { cacheOnly?: boolean }
   >,
   API<
     'ETF에 포함된 주식들',
     '/finance/quote-etf-holdings/:symbol',
     `finance/quote-etf-holdings/${string}`,
-    ExpiryData<QuoteEtfHoldings>
+    ExpiryData<QuoteEtfHoldings>,
+    { cacheOnly?: boolean }
   >,
   API<
     'Quote History',
     '/finance/quote-history/:symbol',
     `finance/quote-history/${string}`,
-    ExpiryData<QuoteHistory>
+    ExpiryData<QuoteHistory>,
+    { cacheOnly?: boolean }
   >,
   API<
     '[성능 최적화] Quote history에서 1W, 1M, 10Y... 와 같이 특정 과거 시점의 데이터를 추출해놓은 데이터',
     '/finance/quote-history-summary/:symbol',
     `finance/quote-history-summary/${string}`,
-    VersionData<HistoryMatch<QuoteRecord>[]>
+    VersionData<HistoryMatch<QuoteRecord>[]>,
+    { cacheOnly?: boolean }
   >,
   API<
     'P/E History Chart의 Data Set: (Quote > EquityValue).trailingPE가 명확히 주입된 History 기록',
     '/finance/equity-value-history/:symbol',
     `finance/equity-value-history/${string}`,
-    VersionData<EquityValueHistory>
+    VersionData<EquityValueHistory>,
+    { cacheOnly?: boolean }
   >,
   API<
     'KOSPI P/E',
     '/finance/:benchmark',
     `finance/kospi-pe`,
-    ExpiryData<KospiPeItem[]>
+    ExpiryData<KospiPeItem[]>,
+    { cacheOnly?: boolean }
   >,
   API<
     'Fear and Greed',
     '/finance/:benchmark',
     `finance/fear-and-greed`,
-    ExpiryData<FearAndGreed>
+    ExpiryData<FearAndGreed>,
+    { cacheOnly?: boolean }
   >,
   API<
     'Shiller P/E, SP500 P/E',
     '/finance/:benchmark',
     `finance/${'shiller-pe' | 'sp500-pe'}`,
-    ExpiryData<DV<Ratio>[]>
+    ExpiryData<DV<Ratio>[]>,
+    { cacheOnly?: boolean }
   >,
   API<
     'SP500 Earnings',
     '/finance/:benchmark',
     `finance/sp500-earnings`,
-    ExpiryData<DV<USD>[]>
+    ExpiryData<DV<USD>[]>,
+    { cacheOnly?: boolean }
   >,
   API<
     'Margin Debt, Buffett Indicator',
     '/finance/:benchmark',
     `finance/${'margin-debt' | 'buffett-indicator'}`,
-    ExpiryData<CurrentMarketValuation>
+    ExpiryData<CurrentMarketValuation>,
+    { cacheOnly?: boolean }
   >,
   API<
     'Recession',
     '/finance/:benchmark',
     `finance/recession`,
-    ExpiryData<RecessionItem[]>
+    ExpiryData<RecessionItem[]>,
+    { cacheOnly?: boolean }
   >,
   API<
     'PE and Yields',
     '/finance/:benchmark',
     `finance/pe-and-yields`,
-    ExpiryData<PeAndYields[]>
+    ExpiryData<PeAndYields[]>,
+    { cacheOnly?: boolean }
   >,
   API<
     'Fred에서 가져오는 데이터',
     '/finance/fred/:series',
     `finance/fred/${string}`,
-    ExpiryData<DV<number>[]>
+    ExpiryData<DV<number>[]>,
+    { cacheOnly?: boolean }
   >,
 ];

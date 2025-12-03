@@ -1,11 +1,8 @@
 import type { FinanceAPI } from './finance.js';
 import type { MyAPI } from './my.js';
-import type { StaticFileAPI } from './static-file.js';
 import type { UtilsAPI } from './utils.js';
 
 export type APIConfig = [...FinanceAPI, ...MyAPI, ...UtilsAPI];
-
-export type StaticFileConfig = [...StaticFileAPI];
 
 type RouterPathOf<T extends APIConfig> = {
   [K in keyof T]: T[K]['__routerPath__'];
@@ -17,15 +14,10 @@ export type Routes = {
     data: P['__data__'];
     query: P['__query__'];
   };
-} & {
-  [P in StaticFileConfig[number] as P['__apiPath__']]: {
-    description: P['__description__'];
-    data: P['__data__'];
-    query: never;
-  };
 };
 
 export const requiredAPIRoutes: RouterPathOf<APIConfig> = [
+  '/finance/quotes',
   '/finance/base-rates/:bank',
   '/finance/quote/:symbol',
   '/finance/quote-statistics/:symbol',
