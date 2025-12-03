@@ -65,18 +65,6 @@ export default [
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-shadow': ['warn'],
       '@typescript-eslint/consistent-type-imports': 'error',
-
-      'no-restricted-imports': [
-        'error',
-        {
-          paths: [
-            {
-              name: 'clsx',
-              message: "Please use 'clsx/lite' instead of 'clsx'.",
-            },
-          ],
-        },
-      ],
     },
   },
   {
