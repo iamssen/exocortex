@@ -16,45 +16,45 @@ import type { API } from './types.js';
 export type MyAPI = [
   API<
     '매매 포지션 기록',
-    '/my/position/:position',
-    `my/position/${string}`,
+    '/position/:position',
+    `position/${string}`,
     string // Markdown
   >,
-  API<'Portfolio', '/my/portfolio', `my/portfolio`, VersionData<Portfolio>>,
-  API<'Body', '/my/body', `my/body`, VersionData<Body>>,
-  API<'Journal', '/my/journal', `my/journal`, VersionData<Journal>>,
-  API<'Moneybook', '/my/moneybook', `my/moneybook`, VersionData<Moneybook>>,
+  API<'Portfolio', '/portfolio', `portfolio`, VersionData<Portfolio>>,
+  API<'Body', '/body', `body`, VersionData<Body>>,
+  API<'Journal', '/journal', `journal`, VersionData<Journal>>,
+  API<'Moneybook', '/moneybook', `moneybook`, VersionData<Moneybook>>,
   API<
     'Finance Summary',
-    '/my/summary',
-    `my/summary`,
+    '/summary',
+    `summary`,
     VersionData<PortfolioSummaries>
   >,
   API<
     'Life Indicator',
-    '/my/life-indicator',
-    `my/life-indicator`,
+    '/life-indicator',
+    `life-indicator`,
     VersionData<EventIndicator[]>
   >,
   API<
     'Finance Indicator',
-    '/my/finance-indicator',
-    `my/finance-indicator`,
+    '/finance-indicator',
+    `finance-indicator`,
     VersionData<EventIndicator[]>
   >,
   API<
     'Skin Indicator',
-    '/my/skin-indicator',
-    `my/skin-indicator`,
+    '/skin-indicator',
+    `skin-indicator`,
     VersionData<EventIndicator[]>
   >,
-  API<'Links', '/my/links', `my/links`, VersionData<Link[]>>,
-  API<'Refs', '/my/refs', `my/refs`, VersionData<Link[]>>,
-  API<'Rescuetime', '/my/rescuetime', `my/rescuetime`, ExpiryData<Rescuetime>>,
+  API<'Links', '/links', `links`, VersionData<Link[]>>,
+  API<'Refs', '/refs', `refs`, VersionData<Link[]>>,
+  API<'Rescuetime', '/rescuetime', `rescuetime`, ExpiryData<Rescuetime>>,
   API<
     '특정일의 Rescuetime Activities',
-    '/my/rescuetime/:date',
-    `my/rescuetime/${string}`,
+    '/rescuetime/:date',
+    `rescuetime/${string}`,
     RescuetimeActivity[]
   >,
 ];

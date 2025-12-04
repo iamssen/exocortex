@@ -127,25 +127,19 @@ function generateDoc() {
     throw new Error('Could not find server/index.ts');
   }
 
-  // 3. APIConfig 및 StaticFileConfig 타입 찾기
+  // 3. APIConfig 타입 찾기
   let apiConfigType: ts.Type | undefined;
-  let staticFileConfigType: ts.Type | undefined;
 
   ts.forEachChild(indexFile, (node) => {
     if (ts.isTypeAliasDeclaration(node)) {
       if (node.name.text === 'APIConfig') {
         apiConfigType = checker.getTypeAtLocation(node);
-      } else if (node.name.text === 'StaticFileConfig') {
-        staticFileConfigType = checker.getTypeAtLocation(node);
       }
     }
   });
 
   if (!apiConfigType) {
     throw new Error('Could not find APIConfig type');
-  }
-  if (!staticFileConfigType) {
-    throw new Error('Could not find StaticFileConfig type');
   }
 
   // 4. API 메타데이터 추출
@@ -209,7 +203,6 @@ function generateDoc() {
   };
 
   processConfig(apiConfigType);
-  processConfig(staticFileConfigType);
 
   // 5. YAML 파일로 출력
   const yamlContent = yamlLines.join('\n');
