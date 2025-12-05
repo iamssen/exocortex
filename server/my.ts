@@ -25,9 +25,9 @@ export type MyAPI = [
   API<'Journal', '/journal', `journal`, VersionData<Journal>>,
   API<'Moneybook', '/moneybook', `moneybook`, VersionData<Moneybook>>,
   API<
-    'Finance Summary',
-    '/summary',
-    `summary`,
+    'Portfolio 날짜별 변동 기록',
+    '/portfolio-history',
+    `portfolio-history`,
     VersionData<PortfolioSummaries>
   >,
   API<

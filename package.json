@@ -1,6 +1,6 @@
 {
   "name": "@iamssen/exocortex",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "type": "module",
   "author": "SSen",
   "license": "MIT",
@@ -54,7 +54,11 @@
       "prettier --write"
     ],
     "server/**/*.{ts,mts,cts,tsx}": [
-      "tsx gendoc.api.ts",
+      "tsx scripts/gendoc.api.ts",
+      "git add contexts/api.yaml"
+    ],
+    "scripts/gendoc.api.ts": [
+      "tsx scripts/gendoc.api.ts",
       "git add contexts/api.yaml"
     ]
   },

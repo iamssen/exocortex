@@ -76,8 +76,8 @@
 "moneybook":
   description: "Moneybook"
   return: "VersionData<Moneybook>"
-"summary":
-  description: "Finance Summary"
+"portfolio-history":
+  description: "Portfolio 날짜별 변동 기록"
   return: "VersionData<PortfolioSummaries>"
 "life-indicator":
   description: "Life Indicator"
