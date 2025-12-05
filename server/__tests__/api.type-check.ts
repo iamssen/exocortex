@@ -1,4 +1,12 @@
-import type { Routes } from '../index.js';
+import type { APIConfig } from '../index.js';
+
+type Routes = {
+  [P in APIConfig[number] as P['__apiPath__']]: {
+    description: P['__description__'];
+    data: P['__data__'];
+    query: P['__query__'];
+  };
+};
 
 interface Options<Path> {
   path: Path;
