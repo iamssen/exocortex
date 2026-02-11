@@ -1,3 +1,4 @@
+export * from './collapseYears.js';
 export * from './findHistories.js';
 export * from './findHistory.js';
 export * from './findStartIndex.js';

@@ -7,11 +7,8 @@ export * from './joinTradesAndQuotes.js';
 
 export * from './aggregateTrades.js';
 
-export * from './sumGain.js';
 export * from './evaluateWatchConditions.js';
-
-export * from './reduceBondsGain.js';
-export * from './reduceDepositsGain.js';
+export * from './sumGain.js';
 
 export * from './sumBondsGain.js';
 export * from './sumDepositsGain.js';
