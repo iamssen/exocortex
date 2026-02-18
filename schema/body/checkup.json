@@ -1,5 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "건강 검진",
+  "description": "건강 검진 결과 기록",
   "type": "object",
   "definitions": {
     "정상|비정상": {
