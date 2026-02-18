@@ -12,14 +12,22 @@
         "severity": {
           "title": "심각도",
           "type": "integer",
-          "enum": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-          "description": "피부 상태의 심각도 1 ~ 10 (높을수록 나쁨)"
+          "minimum": 0,
+          "maximum": 10,
+          "description": "피부 상태의 심각도 0 ~ 10 (높을수록 나쁨)"
         },
         "pustules": {
           "title": "농포 수",
           "type": "integer",
           "minimum": 0,
           "description": "화농이 동반되는 농포의 갯수"
+        },
+        "bloating": {
+          "title": "복부 팽만감",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "복부 팽만감 또는 가스가 찼다고 느끼는 정도 (0: 전혀 없음, 10: 매우 심함)"
         },
         "skincare": {
           "title": "스킨케어",
