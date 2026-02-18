@@ -35,3 +35,7 @@ dist/
 dist-server/
 __dist__/
 **/__fixtures__/Backup/
+
+# manual ignore
+/schema/body/checkups/*.yml
+/schema/body/checkups-source/*.yml

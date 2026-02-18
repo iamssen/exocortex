@@ -1,0 +1,303 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "정상|비정상": {
+      "type": "string",
+      "enum": ["정상", "비정상"],
+      "description": "검사 결과 상태 (정상 또는 비정상)"
+    },
+    "양성|음성": {
+      "type": "string",
+      "enum": ["양성", "음성"],
+      "description": "검사 결과 상태 (양성 또는 음성)"
+    },
+    "좌|우": {
+      "type": "object",
+      "properties": {
+        "좌": { "type": "number" },
+        "우": { "type": "number" }
+      },
+      "required": ["좌", "우"]
+    },
+    "검사결과": {
+      "type": "object",
+      "properties": {
+        "결과": { "type": "string" },
+        "소견": { "type": "string" }
+      }
+    }
+  },
+  "properties": {
+    "혈압 검사": {
+      "type": "object",
+      "properties": {
+        "수축기혈압": { "type": "number" },
+        "이완기혈압": { "type": "number" },
+        "맥박수": { "type": "number" },
+        "소견": { "type": "string" }
+      }
+    },
+    "안과 검사": {
+      "type": "object",
+      "properties": {
+        "시력": { "$ref": "#/definitions/좌|우" },
+        "안압": { "$ref": "#/definitions/좌|우" },
+        "안저": { "$ref": "#/definitions/정상|비정상" },
+        "소견": { "type": "string" }
+      }
+    },
+    "청력 검사": {
+      "type": "object",
+      "properties": {
+        "좌": { "$ref": "#/definitions/정상|비정상" },
+        "우": { "$ref": "#/definitions/정상|비정상" },
+        "500Hz": { "$ref": "#/definitions/좌|우" },
+        "1000Hz": { "$ref": "#/definitions/좌|우" },
+        "2000Hz": { "$ref": "#/definitions/좌|우" },
+        "4000Hz": { "$ref": "#/definitions/좌|우" }
+      },
+      "required": ["좌", "우"]
+    },
+    "당뇨": {
+      "type": "object",
+      "properties": {
+        "공복혈당": { "type": "number" },
+        "HbA1c": { "type": "number" },
+        "소견": { "type": "string" }
+      }
+    },
+    "심전도": {
+      "type": "object",
+      "properties": {
+        "결과": { "$ref": "#/definitions/정상|비정상" },
+        "상세": { "type": "string" },
+        "소견": { "type": "string" }
+      }
+    },
+    "관상동맥석회화 CT": {
+      "$ref": "#/definitions/검사결과"
+    },
+    "동맥경화도": {
+      "type": "object",
+      "properties": {
+        "ABI(협착)": { "$ref": "#/definitions/좌|우" },
+        "CAVI": { "$ref": "#/definitions/좌|우" },
+        "결과": { "$ref": "#/definitions/정상|비정상" },
+        "소견": { "type": "string" }
+      }
+    },
+    "경동맥 초음파": {
+      "$ref": "#/definitions/검사결과"
+    },
+    "지질 및 심혈관 혈액검사": {
+      "type": "object",
+      "properties": {
+        "총콜레스테롤": { "type": "number" },
+        "중성지방": { "type": "number" },
+        "HDL콜레스테롤": { "type": "number" },
+        "LDL콜레스테롤": { "type": "number" },
+        "CPK": { "type": "number" },
+        "LDH": { "type": "number" },
+        "Homocysteine": { "type": "number" },
+        "소견": { "type": "string" }
+      }
+    },
+    "갑상선": {
+      "type": "object",
+      "properties": {
+        "TSH": { "type": "number" },
+        "Free T4": { "type": "number" },
+        "T3": { "type": "number" },
+        "소견": { "type": "string" }
+      }
+    },
+    "갑상선 초음파": {
+      "$ref": "#/definitions/검사결과"
+    },
+    "흉부 X-Ray": {
+      "$ref": "#/definitions/검사결과"
+    },
+    "폐기능 검사": {
+      "type": "object",
+      "properties": {
+        "FVC": { "type": "number" },
+        "FVC(%)": { "type": "number" },
+        "FEV1": { "type": "number" },
+        "FEV1(%)": { "type": "number" },
+        "FEV1/FVC(%)": { "type": "number" },
+        "결과": { "$ref": "#/definitions/정상|비정상" },
+        "소견": { "type": "string" }
+      }
+    },
+    "부비동 검사": {
+      "type": "object",
+      "properties": {
+        "결과": { "$ref": "#/definitions/좌|우" },
+        "소견": { "type": "string" }
+      }
+    },
+    "위 내시경 검사": {
+      "$ref": "#/definitions/검사결과"
+    },
+    "대장 내시경 검사": {
+      "$ref": "#/definitions/검사결과"
+    },
+    "복부초음파": {
+      "$ref": "#/definitions/검사결과"
+    },
+    "간, 담도, 췌장 혈액 및 간염바이러스": {
+      "type": "object",
+      "properties": {
+        "총단백": { "type": "number" },
+        "알부민": { "type": "number" },
+        "글로불린": { "type": "number" },
+        "A/G비율": { "type": "number" },
+        "총빌리루빈": { "type": "number" },
+        "직접빌리루빈": { "type": "number" },
+        "간접빌리루빈": { "type": "number" },
+        "AST(SGOT)": { "type": "number" },
+        "ALT(SGPT)": { "type": "number" },
+        "감마지티피": { "type": "number" },
+        "Alk.Phosphatase": { "type": "number" },
+        "Amylase": { "type": "number" },
+        "LDH": { "type": "number" },
+        "B형간염항원": { "$ref": "#/definitions/양성|음성" },
+        "B형간염항체": { "$ref": "#/definitions/양성|음성" },
+        "A형간염항체(IgG)": { "$ref": "#/definitions/양성|음성" },
+        "A형간염항체(IgM)": { "$ref": "#/definitions/양성|음성" },
+        "HBs Ag": { "$ref": "#/definitions/양성|음성" },
+        "HBs Ab": { "$ref": "#/definitions/양성|음성" },
+        "anti-HCV": { "$ref": "#/definitions/양성|음성" },
+        "소견": { "type": "string" }
+      }
+    },
+    "신장요로 혈액검사": {
+      "type": "object",
+      "properties": {
+        "요소질소(BUN)": { "type": "number" },
+        "Creatinine": { "type": "number" },
+        "BUN/Creatinine 비율": { "type": "number" },
+        "사구체여과율(GFR)": { "type": "number" }
+      }
+    },
+    "전해질 및 신진대사 관련검사": {
+      "type": "object",
+      "properties": {
+        "칼슘(Ca)": { "type": "number" },
+        "마그네슘(Mg)": { "type": "number" },
+        "나트륨(Na)": { "type": "number" },
+        "칼륨(K)": { "type": "number" },
+        "염소(Cl)": { "type": "number" }
+      }
+    },
+    "소변검사": {
+      "type": "object",
+      "properties": {
+        "요중백혈구(WBC)": { "type": ["string", "number"] },
+        "요중적혈구(RBC)": { "type": "string" },
+        "요중Nitrite": { "type": "string" },
+        "pH": { "type": "number" },
+        "요단백": { "type": "string" },
+        "당": { "type": "string" },
+        "요중케톤체량": { "type": "string" },
+        "유로빌리노겐": { "type": "string" },
+        "요빌리루빈": { "type": "string" },
+        "요잠혈": { "type": "string" },
+        "요비중(SG)": { "type": "number" }
+      }
+    },
+    "혈액학 & 철대사": {
+      "type": "object",
+      "properties": {
+        "혈색소량(Hb)": { "type": "number" },
+        "적혈구수(RBC)": { "type": "number" },
+        "적혈구수": { "type": "number" },
+        "백혈구수(WBC)": { "type": "number" },
+        "백혈구수": { "type": "number" },
+        "혈소판수(Platelet)": { "type": "number" },
+        "혈소판수": { "type": "number" },
+        "적혈구용적(MCV)": { "type": "number" },
+        "적혈구혈색소량(MCH)": { "type": "number" },
+        "적혈구혈혈색소농도(MCHC)": { "type": "number" },
+        "RDW": { "type": "number" },
+        "PDW": { "type": "number" },
+        "MPV": { "type": "number" },
+        "혈구용적치(HCT)": { "type": "number" },
+        "분획호중구": { "type": "number" },
+        "림프구": { "type": "number" },
+        "호산구": { "type": "number" },
+        "호염기구": { "type": "number" },
+        "단핵구": { "type": "number" },
+        "철(Fe)": { "type": "number" },
+        "TIBC": { "type": "number" },
+        "UIBC": { "type": "number" },
+        "철포화율": { "type": "number" },
+        "소견": { "type": "string" }
+      }
+    },
+    "종양표지자": {
+      "type": "object",
+      "properties": {
+        "AFP": { "type": "number" },
+        "CEA": { "type": "number" },
+        "CA 19-9": { "type": "number" },
+        "PSA": { "type": "number" },
+        "CYFRA": { "type": "number" },
+        "소견": { "type": "string" }
+      }
+    },
+    "통풍 및 염증": {
+      "type": "object",
+      "properties": {
+        "요산(Uric Acid)": { "type": "number" },
+        "류마티스인자(RF)": { "type": ["number", "string"] },
+        "CRP": { "type": "number" },
+        "소견": { "type": "string" }
+      }
+    },
+    "골밀도": {
+      "type": "object",
+      "properties": {
+        "결과": { "type": "string" },
+        "T-score": { "type": "number" },
+        "Z-score": { "type": "number" },
+        "BMD": { "type": "number" },
+        "소견": { "type": "string" }
+      }
+    },
+    "요추 CT": {
+      "$ref": "#/definitions/검사결과"
+    },
+    "골대사": {
+      "type": "object",
+      "properties": {
+        "25-OH Vitamin D": { "type": "number" },
+        "소견": { "type": "string" }
+      }
+    },
+    "전립선 초음파": {
+      "$ref": "#/definitions/검사결과"
+    },
+    "성매개감염병(남)": {
+      "type": "object",
+      "properties": {
+        "RPR(매독)": { "$ref": "#/definitions/양성|음성" },
+        "HIV": { "$ref": "#/definitions/양성|음성" },
+        "소견": { "type": "string" }
+      }
+    },
+    "폐 CT": {
+      "$ref": "#/definitions/검사결과"
+    },
+    "코로나 항체검사": {
+      "type": "object",
+      "properties": {
+        "결과": { "$ref": "#/definitions/양성|음성" },
+        "상세": { "type": "string" },
+        "소견": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

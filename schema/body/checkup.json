@@ -1,0 +1,482 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "definitions": {
+    "정상|비정상": {
+      "type": "string",
+      "enum": ["정상", "비정상"],
+      "description": "검사 결과 상태 (정상 또는 비정상)"
+    },
+    "양성|음성": {
+      "type": "string",
+      "enum": ["양성", "음성"],
+      "description": "검사 결과 상태 (양성 또는 음성)"
+    },
+    "좌|우": {
+      "type": "object",
+      "properties": {
+        "좌": { "type": "number" },
+        "우": { "type": "number" }
+      },
+      "required": ["좌", "우"],
+      "additionalProperties": false
+    },
+    "검사결과": {
+      "type": "object",
+      "properties": {
+        "결과": { "type": "string" },
+        "소견": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "기초검사": {
+      "type": "object",
+      "properties": {
+        "혈압 검사": {
+          "type": "object",
+          "description": "혈압 검사는 안정 상태에서 수축기와 이완기의 혈압을 측정합니다. 혈압은 운동, 스트레스, 안정 상태 등에 따라 변하므로 한 번의 측정으로 고혈압을 진단할 수는 없습니다. 혈압이 높게 측정된 경우 가정에서 주기적으로 혈압을 측정해서 확인하는 것이 필요하며, 가정에서도 계속 높을 경우 혈압 확진을 위해 병원 진료 및 24시간 활동 혈압 측정 등의 검사가 필요할 수 있습니다.",
+          "properties": {
+            "수축기혈압": {
+              "type": "number",
+              "description": "unit: mmHg, 정상: [100, 119], 주의: [120, 129], 위험: [130, null]"
+            },
+            "이완기혈압": {
+              "type": "number",
+              "description": "unit: mmHg, 정상: [61, 79], 주의: [80, 89], 위험: [90, null]"
+            },
+            "맥박수": { "type": "number" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "안과 검사": {
+          "type": "object",
+          "description": "안압 검사는 안압 상승을 동반하는 녹내장을 조기에 선별할 수 있는 검사입니다. 하지만 안압 상승만으로 녹내장을 진단할 수 없으며 정상 안압 녹내장도 흔하기 때문에 안저 촬영 결과를 같이 참고해야 하며 증상이 있는 경우 반드시 안과 진료가 필요합니다. 안저는 눈 안쪽에 있는 부위로 망막과 혈관, 맥락막, 뇌로 이어지는 시신경의 출입구 등이 존재합니다. 안저 촬영을 통해 실명의 주된 원인인 녹내장, 황반 변성, 당뇨나 고혈압에 의한 망막 병증을 초기에 발견할 수 있습니다.",
+          "properties": {
+            "시력": { "$ref": "#/definitions/좌|우" },
+            "안압": {
+              "allOf": [{ "$ref": "#/definitions/좌|우" }],
+              "description": "정상: [8, 20]"
+            },
+            "안저": { "$ref": "#/definitions/정상|비정상" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "청력 검사": {
+          "type": "object",
+          "description": "청력은 각 주파수마다 25dB 이상인 강도의 소리만 들을 수 있는 경우 이상이 있다고 판정하며, 주파수에 따라 다르지만 40dB 이상인 높은 강도의 소리만 들을 수 있는 경우에는 일상생활에 지장이 있을 수 있습니다. unit: dB",
+          "properties": {
+            "좌": { "$ref": "#/definitions/정상|비정상" },
+            "우": { "$ref": "#/definitions/정상|비정상" },
+            "500Hz": { "$ref": "#/definitions/좌|우" },
+            "1000Hz": { "$ref": "#/definitions/좌|우" },
+            "2000Hz": { "$ref": "#/definitions/좌|우" },
+            "4000Hz": { "$ref": "#/definitions/좌|우" },
+            "소견": { "type": "string" }
+          },
+          "required": ["좌", "우"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "대사 및 내분비": {
+      "type": "object",
+      "properties": {
+        "당뇨": {
+          "type": "object",
+          "description": "당뇨병의 진단 기준은 공복 혈당 126mg/dL 이상이거나 당화혈색소가 6.5% 이상인 경우입니다. 공복 혈당이 100~125mg/dL 또는 당화혈색소가 5.7~6.4%인 경우에는 당뇨병 전단계(공복혈당장애)로 진단하며, 향후 당뇨병으로 진행될 가능성이 높습니다. 따라서 당뇨병 전단계(공복혈당장애)에 해당하는 경우에는 식이 조절, 운동 및 체중 조절 등의 건강한 생활습관을 유지하기 위한 노력을 기울여야 하며 정기적인 혈당 검사를 받아야 합니다.",
+          "properties": {
+            "공복혈당": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [70, 99], 당뇨병 전 단계: [100, 125], 당뇨: [126, null]"
+            },
+            "HbA1c": {
+              "type": "number",
+              "description": "unit: %, 정상: [0, 5.6], 당뇨병 전 단계: [5.7, 6.4], 당뇨: [6.5, null]"
+            },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "갑상선": {
+          "type": "object",
+          "properties": {
+            "TSH": {
+              "type": "number",
+              "description": "unit: uIU/mL, 정상: [0.35, 5.5]"
+            },
+            "Free T4": {
+              "type": "number",
+              "description": "unit: ng/dL, 정상: [0.89, 1.76]"
+            },
+            "T3": {
+              "type": "number",
+              "description": "unit: ng/mL, 정상: [0.8, 2]"
+            },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "갑상선 초음파": { "$ref": "#/definitions/검사결과" },
+        "전해질 및 신진대사 관련검사": {
+          "type": "object",
+          "properties": {
+            "칼슘(Ca)": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [8.4, 10.2]"
+            },
+            "마그네슘(Mg)": {
+              "type": "number",
+              "description": "정상: [1.9, 2.6]"
+            },
+            "나트륨(Na)": {
+              "type": "number",
+              "description": "unit: mmol/L, 정상: [135, 145]"
+            },
+            "칼륨(K)": {
+              "type": "number",
+              "description": "unit: mmol/L, 정상: [3.5, 5.5]"
+            },
+            "염소(Cl)": {
+              "type": "number",
+              "description": "unit: mmol/L, 정상: [98, 110]"
+            }
+          },
+          "additionalProperties": false
+        },
+        "골대사": {
+          "type": "object",
+          "properties": {
+            "25-OH Vitamin D": { "type": "number" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "순환기계": {
+      "type": "object",
+      "properties": {
+        "심전도": {
+          "type": "object",
+          "properties": {
+            "결과": { "$ref": "#/definitions/정상|비정상" },
+            "상세": { "type": "string" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "동맥경화도": {
+          "type": "object",
+          "properties": {
+            "ABI(협착)": {
+              "allOf": [{ "$ref": "#/definitions/좌|우" }],
+              "description": "정상: [0.9, 1.4]"
+            },
+            "CAVI": {
+              "allOf": [{ "$ref": "#/definitions/좌|우" }],
+              "description": "정상: [0, 7.9]"
+            },
+            "결과": { "$ref": "#/definitions/정상|비정상" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "경동맥 초음파": { "$ref": "#/definitions/검사결과" },
+        "지질 및 심혈관 혈액검사": {
+          "type": "object",
+          "properties": {
+            "총콜레스테롤": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [120, 199], 높음: [200, 239], 위험: [240, null]"
+            },
+            "중성지방": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [50, 149], 높음: [150, 199], 위험: [200, null]"
+            },
+            "HDL콜레스테롤": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [40, 60], 낮음: [30, 39], 위험: [0, 29] (높을수록 좋음)"
+            },
+            "LDL콜레스테롤": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [50, 129], 높음: [130, 159], 위험: [160, null]"
+            },
+            "CPK": {
+              "type": "number",
+              "description": "unit: IU/L, 정상: [30, 200]"
+            },
+            "LDH": {
+              "type": "number",
+              "description": "unit: IU/L, 정상: [106, 300]"
+            },
+            "Homocysteine": {
+              "type": "number",
+              "description": "unit: umol/L, 정상: [5, 15]"
+            },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "관상동맥석회화 CT": { "$ref": "#/definitions/검사결과" }
+      },
+      "additionalProperties": false
+    },
+    "호흡기계": {
+      "type": "object",
+      "properties": {
+        "흉부 X-Ray": { "$ref": "#/definitions/검사결과" },
+        "폐기능 검사": {
+          "type": "object",
+          "properties": {
+            "FVC": { "type": "number", "description": "unit: L" },
+            "FVC(%)": { "type": "number" },
+            "FEV1": { "type": "number", "description": "unit: L" },
+            "FEV1(%)": { "type": "number" },
+            "FEV1/FVC(%)": { "type": "number" },
+            "결과": { "$ref": "#/definitions/정상|비정상" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "부비동 검사": {
+          "type": "object",
+          "description": "unit: %, 낮음: [0, 29], 조금높음: [30, 69], 매우높음: [70, 100]",
+          "properties": {
+            "결과": { "$ref": "#/definitions/좌|우" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "폐 CT": { "$ref": "#/definitions/검사결과" },
+        "코로나 항체검사": {
+          "type": "object",
+          "properties": {
+            "결과": { "$ref": "#/definitions/양성|음성" },
+            "상세": { "type": "string" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "소화기계": {
+      "type": "object",
+      "properties": {
+        "위 내시경 검사": { "$ref": "#/definitions/검사결과" },
+        "대장 내시경 검사": { "$ref": "#/definitions/검사결과" },
+        "복부초음파": { "$ref": "#/definitions/검사결과" },
+        "간, 담도, 췌장 혈액 및 간염바이러스": {
+          "type": "object",
+          "properties": {
+            "총단백": {
+              "type": "number",
+              "description": "unit: g/dL, 정상: [6, 8.3]"
+            },
+            "알부민": {
+              "type": "number",
+              "description": "unit: g/dL, 정상: [3.5, 5.2]"
+            },
+            "글로불린": {
+              "type": "number",
+              "description": "unit: g/dL, 정상: [1.5, 3]"
+            },
+            "A/G비율": { "type": "number", "description": "정상: [1.3, 2.3]" },
+            "총빌리루빈": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [0.2, 1.2]"
+            },
+            "직접빌리루빈": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [0, 0.5]"
+            },
+            "간접빌리루빈": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [0.2, 0.7]"
+            },
+            "AST(SGOT)": {
+              "type": "number",
+              "description": "unit: IU/L, 정상: [0, 40]"
+            },
+            "ALT(SGPT)": {
+              "type": "number",
+              "description": "unit: IU/L, 정상: [0, 45]"
+            },
+            "감마지티피": {
+              "type": "number",
+              "description": "unit: IU/L, 정상: [11, 70]"
+            },
+            "Alk.Phosphatase": {
+              "type": "number",
+              "description": "unit: IU/L, 정상: [40, 150]"
+            },
+            "Amylase": {
+              "type": "number",
+              "description": "unit: U/L, 정상: [16, 109]"
+            },
+            "LDH": {
+              "type": "number",
+              "description": "unit: IU/L, 정상: [100, 260]"
+            },
+            "B형간염항원": { "$ref": "#/definitions/양성|음성" },
+            "B형간염항체": { "$ref": "#/definitions/양성|음성" },
+            "A형간염항체(IgG)": { "$ref": "#/definitions/양성|음성" },
+            "A형간염항체(IgM)": { "$ref": "#/definitions/양성|음성" },
+            "HBs Ag": { "$ref": "#/definitions/양성|음성" },
+            "HBs Ab": { "$ref": "#/definitions/양성|음성" },
+            "anti-HCV": { "$ref": "#/definitions/양성|음성" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "신장 및 비뇨기계": {
+      "type": "object",
+      "properties": {
+        "신장요로 혈액검사": {
+          "type": "object",
+          "properties": {
+            "요소질소(BUN)": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [5, 20]"
+            },
+            "Creatinine": {
+              "type": "number",
+              "description": "unit: mg/dL, 정상: [0.5, 1.4]"
+            },
+            "BUN/Creatinine 비율": {
+              "type": "number",
+              "description": "unit: %, 정상: [10, 20]"
+            },
+            "사구체여과율(GFR)": {
+              "type": "number",
+              "description": "정상: [60, null]"
+            },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "소변검사": {
+          "type": "object",
+          "properties": {
+            "요중백혈구(WBC)": { "type": ["string", "number"] },
+            "요중적혈구(RBC)": { "type": "string" },
+            "요중Nitrite": { "type": "string" },
+            "pH": { "type": "number" },
+            "요단백": { "type": "string" },
+            "당": { "type": "string" },
+            "요중케톤체량": { "type": "string" },
+            "유로빌리노겐": { "type": "string" },
+            "요빌리루빈": { "type": "string" },
+            "요잠혈": { "type": "string" },
+            "요비중(SG)": { "type": "number" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "혈액 및 종양": {
+      "type": "object",
+      "properties": {
+        "혈액학 & 철대사": {
+          "type": "object",
+          "properties": {
+            "혈색소량(Hb)": { "type": "number" },
+            "적혈구수(RBC)": { "type": "number" },
+            "적혈구수": { "type": "number" },
+            "백혈구수(WBC)": { "type": "number" },
+            "백혈구수": { "type": "number" },
+            "혈소판수(Platelet)": { "type": "number" },
+            "혈소판수": { "type": "number" },
+            "적혈구용적(MCV)": { "type": "number" },
+            "적혈구혈색소량(MCH)": { "type": "number" },
+            "적혈구혈혈색소농도(MCHC)": { "type": "number" },
+            "RDW": { "type": "number" },
+            "PDW": { "type": "number" },
+            "MPV": { "type": "number" },
+            "혈구용적치(HCT)": { "type": "number" },
+            "분획호중구": { "type": "number" },
+            "림프구": { "type": "number" },
+            "호산구": { "type": "number" },
+            "호염기구": { "type": "number" },
+            "단핵구": { "type": "number" },
+            "철(Fe)": { "type": "number" },
+            "TIBC": { "type": "number" },
+            "UIBC": { "type": "number" },
+            "철포화율": { "type": "number" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "종양표지자": {
+          "type": "object",
+          "properties": {
+            "AFP": { "type": "number" },
+            "CEA": { "type": "number" },
+            "CA 19-9": { "type": "number" },
+            "PSA": { "type": "number" },
+            "CYFRA": { "type": "number" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "근골격계": {
+      "type": "object",
+      "properties": {
+        "골밀도": {
+          "type": "object",
+          "properties": {
+            "결과": { "type": "string" },
+            "T-score": { "type": "number" },
+            "Z-score": { "type": "number" },
+            "BMD": { "type": "number" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "요추 CT": { "$ref": "#/definitions/검사결과" },
+        "통풍 및 염증": {
+          "type": "object",
+          "properties": {
+            "요산(Uric Acid)": { "type": "number" },
+            "류마티스인자(RF)": { "type": ["number", "string"] },
+            "CRP": { "type": "number" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "기타": {
+      "type": "object",
+      "properties": {
+        "전립선 초음파": { "$ref": "#/definitions/검사결과" },
+        "성매개감염병": {
+          "type": "object",
+          "properties": {
+            "RPR(매독)": { "$ref": "#/definitions/양성|음성" },
+            "HIV": { "$ref": "#/definitions/양성|음성" },
+            "소견": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
