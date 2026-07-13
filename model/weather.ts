@@ -4,7 +4,7 @@ export type PrecipitationType = 'NONE' | 'UNKNOWN' | 'RAIN' | 'SNOW';
 
 export interface Weather {
   baseDate: Iso8601;
-  termperature: number; // T1H, ℃
+  temperature: number; // T1H, ℃
   rainfall: number; // RN1, mm
   humidity: Percent; // REH, %
   precipitationType: PrecipitationType; // PTY

@@ -12,7 +12,6 @@
 - AI 어시스턴트 (AI Assistance)
   - [contexts](./contexts): AI 참고용 문맥(Context) 자료
   - [reviews](./reviews): AI 코드 리뷰 결과
-  - [.agent/workflows](./.agent/workflows): AI 작업 지시 워크플로우
 
 # Exports
 

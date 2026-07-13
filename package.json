@@ -1,6 +1,6 @@
 {
   "name": "@iamssen/exocortex",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "type": "module",
   "author": "SSen",
   "license": "MIT",
@@ -32,7 +32,7 @@
   },
   "repository": "https://github.com/iamssen/exocortex",
   "scripts": {
-    "type-check": "tsc --watch --noEmit",
+    "type-check": "tsc --noEmit",
     "test": "vitest run",
     "format": "prettier --write \"**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}\"",
     "lint": "eslint .",
