@@ -1,4 +1,3 @@
-import type { HistoryMatch } from '../date-utils/index.js';
 import type {
   CentralBank,
   CurrentMarketValuation,
@@ -13,7 +12,6 @@ import type {
   QuoteEtfHoldings,
   QuoteHistory,
   QuoteInfoIndex,
-  QuoteRecord,
   QuoteStatistics,
   Ratio,
   RecessionItem,
@@ -62,13 +60,6 @@ export type FinanceAPI = [
     '/finance/quote-history/:symbol',
     `finance/quote-history/${string}`,
     ExpiryData<QuoteHistory>,
-    { cacheOnly?: boolean }
-  >,
-  API<
-    '[성능 최적화] Quote history에서 1W, 1M, 10Y... 와 같이 특정 과거 시점의 데이터를 추출해놓은 데이터',
-    '/finance/quote-history-summary/:symbol',
-    `finance/quote-history-summary/${string}`,
-    VersionData<HistoryMatch<QuoteRecord>[]>,
     { cacheOnly?: boolean }
   >,
   API<

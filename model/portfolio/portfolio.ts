@@ -9,9 +9,6 @@ import type { Simulation } from './simulation.js';
 import type { Watch } from './watch.js';
 
 export type PortfolioMarket = 'us' | 'kr' | 'jp' | 'fx' | 'crypto';
-export type AnalyzedQuoteInfo = QuoteInfo & {
-  portfolio: PortfolioMarket | undefined;
-};
 
 export interface QuoteInfoIndex {
   quotes: QuoteInfo[];

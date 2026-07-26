@@ -1,0 +1,94 @@
+format: "exocortex-http/v1"
+types: "@iamssen/exocortex"
+syntax: "METHOD /path/{name:type}?{required:type,optional?:type}"
+routes:
+  "GET /finance/quotes":
+    description: "Quotes"
+    returns: "VersionData<QuoteInfoIndex>"
+  "GET /finance/base-rates/{bank:BOK|FED|ECB|BOE|SNB|BOC|BOJ|CBR|RBI|PBOC|BCB}?{cacheOnly?:boolean}":
+    description: "중앙은행 기준금리"
+    returns: "ExpiryData<InterestRateItem[]>"
+  "GET /finance/quote/{symbol:string}?{cacheOnly?:boolean}":
+    description: "Quote"
+    returns: "ExpiryData<Quote>"
+  "GET /finance/quote-statistics/{symbol:string}?{cacheOnly?:boolean}":
+    description: "Quote Statistics"
+    returns: "ExpiryData<QuoteStatistics>"
+  "GET /finance/quote-etf-holdings/{symbol:string}?{cacheOnly?:boolean}":
+    description: "ETF에 포함된 주식들"
+    returns: "ExpiryData<QuoteEtfHoldings>"
+  "GET /finance/quote-history/{symbol:string}?{cacheOnly?:boolean}":
+    description: "Quote History"
+    returns: "ExpiryData<QuoteHistory>"
+  "GET /finance/equity-value-history/{symbol:string}?{cacheOnly?:boolean}":
+    description: "P/E History Chart의 Data Set: (Quote > EquityValue).trailingPE가 명확히 주입된 History 기록"
+    returns: "VersionData<EquityValueHistory>"
+  "GET /finance/kospi-pe?{cacheOnly?:boolean}":
+    description: "KOSPI P/E"
+    returns: "ExpiryData<KospiPeItem[]>"
+  "GET /finance/fear-and-greed?{cacheOnly?:boolean}":
+    description: "Fear and Greed"
+    returns: "ExpiryData<FearAndGreed>"
+  "GET /finance/{benchmark:shiller-pe|sp500-pe}?{cacheOnly?:boolean}":
+    description: "Shiller P/E, SP500 P/E"
+    returns: "ExpiryData<DV<Ratio>[]>"
+  "GET /finance/sp500-earnings?{cacheOnly?:boolean}":
+    description: "SP500 Earnings"
+    returns: "ExpiryData<DV<USD>[]>"
+  "GET /finance/{benchmark:margin-debt|buffett-indicator}?{cacheOnly?:boolean}":
+    description: "Margin Debt, Buffett Indicator"
+    returns: "ExpiryData<CurrentMarketValuation>"
+  "GET /finance/recession?{cacheOnly?:boolean}":
+    description: "Recession"
+    returns: "ExpiryData<RecessionItem[]>"
+  "GET /finance/pe-and-yields?{cacheOnly?:boolean}":
+    description: "PE and Yields"
+    returns: "ExpiryData<PeAndYields[]>"
+  "GET /finance/fred/{series:string}?{cacheOnly?:boolean}":
+    description: "Fred에서 가져오는 데이터"
+    returns: "ExpiryData<DV<number>[]>"
+  "GET /position/{position:string}":
+    description: "매매 포지션 기록"
+    returns: "string"
+  "GET /portfolio":
+    description: "Portfolio"
+    returns: "VersionData<Portfolio>"
+  "GET /body":
+    description: "Body"
+    returns: "VersionData<Body>"
+  "GET /journal":
+    description: "Journal"
+    returns: "VersionData<Journal>"
+  "GET /moneybook":
+    description: "Moneybook"
+    returns: "VersionData<Moneybook>"
+  "GET /portfolio-history":
+    description: "Portfolio 날짜별 변동 기록"
+    returns: "VersionData<PortfolioSummaries>"
+  "GET /life-indicator":
+    description: "Life Indicator"
+    returns: "VersionData<EventIndicator[]>"
+  "GET /finance-indicator":
+    description: "Finance Indicator"
+    returns: "VersionData<EventIndicator[]>"
+  "GET /skin-indicator":
+    description: "Skin Indicator"
+    returns: "VersionData<EventIndicator[]>"
+  "GET /links":
+    description: "Links"
+    returns: "VersionData<Link[]>"
+  "GET /refs":
+    description: "Refs"
+    returns: "VersionData<Link[]>"
+  "GET /rescuetime":
+    description: "Rescuetime"
+    returns: "ExpiryData<Rescuetime>"
+  "GET /rescuetime/{date:string}":
+    description: "특정일의 Rescuetime Activities"
+    returns: "RescuetimeActivity[]"
+  "GET /reverse-geocoding?{longitude:number,latitude:number}":
+    description: "Location 정보 → 사람이 읽을 수 있는 주소"
+    returns: "ReverseGeocoding"
+  "GET /weather?{longitude:number,latitude:number}":
+    description: "특정 위치의 현재 날씨"
+    returns: "Weather"

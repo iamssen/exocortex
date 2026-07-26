@@ -1,5 +1,8 @@
 import type { Iso8601, JPY, KRW, Percent, USD } from '../nominal-types.js';
 
+/**
+ * @deprecated 추후 좀 더 가벼운 구조로 Server 전용으로 변경 (History 용으로...)
+ */
 export interface PortfolioSummary {
   /** financeData.fx.usd.purchaseAmount */
   purchaseUSD: USD;

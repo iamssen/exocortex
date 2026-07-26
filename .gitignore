@@ -39,3 +39,4 @@ __dist__/
 # manual ignore
 /schema/body/checkups/*.yml
 /schema/body/checkups-source/*.yml
+/legacy-backup

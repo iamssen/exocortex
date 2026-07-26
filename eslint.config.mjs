@@ -1,15 +1,13 @@
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
-import importPlugin from 'eslint-plugin-import';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
+import { importX } from 'eslint-plugin-import-x';
 import unicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default [
   {
-    ignores: ['dist'],
+    ignores: ['dist', 'legacy-backup'],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -21,14 +19,10 @@ export default [
       globals: globals.browser,
     },
     plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      'import': importPlugin,
+      'import-x': importX,
       unicorn,
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
-      ...reactRefresh.configs.recommended.rules,
       ...unicorn.configs.recommended.rules,
 
       'unicorn/prevent-abbreviations': 'off',
@@ -41,6 +35,7 @@ export default [
       'unicorn/no-array-callback-reference': 'off',
       'unicorn/prefer-type-error': 'off',
       'unicorn/no-nested-ternary': 'off',
+      'unicorn/name-replacements': 'off',
 
       'prefer-const': 'off',
       'no-undef': 'off',
@@ -66,7 +61,7 @@ export default [
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-shadow': ['warn'],
-      'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+      'import-x/consistent-type-specifier-style': ['error', 'prefer-top-level'],
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {

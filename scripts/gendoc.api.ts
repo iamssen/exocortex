@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const sourceFile = path.join(__dirname, '../server/index.ts');
-const outputFile = path.join(__dirname, '../contexts/api.yaml');
+const outputFile = path.join(__dirname, '../docs/api-list.yaml');
 
 // 타입 내 속성의 타입을 가져오는 헬퍼 함수
 function getMemberType(
@@ -30,62 +30,7 @@ function getStringLiteralValue(type: ts.Type): string | undefined {
   return undefined;
 }
 
-// API 경로를 포맷팅하는 헬퍼 함수
-function formatApiPath(type: ts.Type, checker: ts.TypeChecker): string {
-  // Union 타입 처리
-  if (type.isUnion()) {
-    const parts = type.types.map((t) => {
-      if (t.isStringLiteral()) {
-        return t.value;
-      }
-      // 다른 타입의 경우 문자열 표현을 가져오고 따옴표/백틱 제거
-      let str = checker.typeToString(t);
-      if (
-        (str.startsWith('"') && str.endsWith('"')) ||
-        (str.startsWith("'") && str.endsWith("'")) ||
-        (str.startsWith('`') && str.endsWith('`'))
-      ) {
-        str = str.slice(1, -1);
-      }
-      return str;
-    });
-
-    // 공통 접두사 찾기
-    if (parts.length === 0) return '';
-    const first = parts[0];
-    let prefixLen = 0;
-    while (prefixLen < first.length) {
-      const char = first[prefixLen];
-      if (parts.every((p) => p[prefixLen] === char)) {
-        prefixLen++;
-      } else {
-        break;
-      }
-    }
-
-    let prefix = first.slice(0, Math.max(0, prefixLen));
-    let suffixes = parts.map((p) => p.slice(Math.max(0, prefixLen)));
-
-    // 휴리스틱: 디렉토리 구조를 깔끔하게 유지하기 위해 가능한 경우 마지막 슬래시에서 분할
-    if (
-      prefix.length > 0 &&
-      !prefix.endsWith('/') &&
-      !suffixes.some((s) => s.startsWith('/'))
-    ) {
-      const lastSlash = prefix.lastIndexOf('/');
-      if (lastSlash !== -1) {
-        prefix = prefix.slice(0, Math.max(0, lastSlash + 1));
-        suffixes = parts.map((p) => p.slice(prefix.length));
-      }
-    }
-
-    if (prefix) {
-      return `${prefix}(${suffixes.join('|')})`;
-    }
-    return `(${parts.join('|')})`;
-  }
-
-  // 단일 타입 처리 (StringLiteral, TemplateLiteral 등)
+function typeToString(type: ts.Type, checker: ts.TypeChecker): string {
   const str = checker.typeToString(type);
   if (
     (str.startsWith('"') && str.endsWith('"')) ||
@@ -95,6 +40,104 @@ function formatApiPath(type: ts.Type, checker: ts.TypeChecker): string {
     return str.slice(1, -1);
   }
   return str;
+}
+
+function getApiPathVariants(type: ts.Type, checker: ts.TypeChecker): string[] {
+  return type.isUnion()
+    ? type.types.map((t) => typeToString(t, checker))
+    : [typeToString(type, checker)];
+}
+
+function getPathParameterType(value: string): string | undefined {
+  return /^\$\{(.+)\}$/.exec(value)?.[1];
+}
+
+// 실제 client path와 router path를 결합해서 parameter의 이름과 타입을 보존한다.
+function formatApiPath(
+  apiPathType: ts.Type,
+  routerPathType: ts.Type,
+  checker: ts.TypeChecker,
+): string {
+  const apiPaths = getApiPathVariants(apiPathType, checker);
+  const routerPath = getStringLiteralValue(routerPathType);
+
+  if (!routerPath) {
+    return `/${apiPaths.join('|')}`;
+  }
+
+  const routerSegments = routerPath.replace(/^\//, '').split('/');
+  const apiPathSegments = apiPaths.map((apiPath) =>
+    apiPath.replace(/^\//, '').split('/'),
+  );
+
+  const segments = apiPathSegments[0].map((_, index) => {
+    const values = [
+      ...new Set(apiPathSegments.map((apiPath) => apiPath[index])),
+    ];
+    const routerSegment = routerSegments[index];
+
+    if (!routerSegment?.startsWith(':')) {
+      return values.length === 1 ? values[0] : `(${values.join('|')})`;
+    }
+
+    const parameterName = routerSegment.slice(1);
+    if (values.length > 1) {
+      return `{${parameterName}:${values.join('|')}}`;
+    }
+
+    const parameterType = getPathParameterType(values[0]);
+    return parameterType ? `{${parameterName}:${parameterType}}` : values[0];
+  });
+
+  return `/${segments.join('/')}`;
+}
+
+function formatTypeWithoutUndefined(
+  type: ts.Type,
+  checker: ts.TypeChecker,
+): string {
+  if (!type.isUnion()) {
+    return checker.typeToString(type);
+  }
+
+  const types = type.types.filter((t) => !(t.flags & ts.TypeFlags.Undefined));
+
+  if (
+    types.length === 2 &&
+    types.every((t) => t.flags & ts.TypeFlags.BooleanLiteral)
+  ) {
+    return 'boolean';
+  }
+
+  return types.map((t) => checker.typeToString(t)).join('|');
+}
+
+function formatQuery(queryType: ts.Type, checker: ts.TypeChecker): string {
+  if (
+    queryType.flags & ts.TypeFlags.Never ||
+    checker.typeToString(queryType) === 'never'
+  ) {
+    return '';
+  }
+
+  const parameters = queryType.getProperties().map((property) => {
+    const declaration = property.valueDeclaration ?? property.declarations?.[0];
+    if (!declaration) {
+      throw new Error(
+        `Could not find declaration for query "${property.name}"`,
+      );
+    }
+
+    const propertyType = checker.getTypeOfSymbolAtLocation(
+      property,
+      declaration,
+    );
+    const optional = property.flags & ts.SymbolFlags.Optional ? '?' : '';
+    const type = formatTypeWithoutUndefined(propertyType, checker);
+    return `${property.name}${optional}:${type}`;
+  });
+
+  return parameters.length > 0 ? `?{${parameters.join(',')}}` : '';
 }
 
 function generateDoc() {
@@ -150,8 +193,7 @@ function generateDoc() {
     // TS 컴파일러 API에서 튜플 타입은 종종 TypeReference에 'typeArguments' 속성을 가집니다.
     // 기본 Type 인터페이스에 없을 수 있으므로 안전하게 접근하기 위해 any로 캐스팅합니다.
     const typeArguments = (configType as any).typeArguments as
-      | ts.Type[]
-      | undefined;
+      ts.Type[] | undefined;
 
     if (!typeArguments) {
       console.warn('No type arguments found for config type');
@@ -160,9 +202,10 @@ function generateDoc() {
 
     for (const apiType of typeArguments) {
       // API 타입에서 속성 추출 (예: API<...>)
-      // 속성은 __apiPath__, __description__, __data__, __query__ 입니다
+      // API type에서 route와 문서화할 metadata를 추출합니다.
 
       const apiPathType = getMemberType(checker, apiType, '__apiPath__');
+      const routerPathType = getMemberType(checker, apiType, '__routerPath__');
       const descriptionType = getMemberType(
         checker,
         apiType,
@@ -172,9 +215,11 @@ function generateDoc() {
       const queryType = getMemberType(checker, apiType, '__query__');
 
       // 타입을 문자열 값으로 변환
-      const cleanApiPath = apiPathType
-        ? formatApiPath(apiPathType, checker)
-        : 'N/A';
+      const cleanApiPath =
+        apiPathType && routerPathType
+          ? formatApiPath(apiPathType, routerPathType, checker)
+          : 'N/A';
+      const query = queryType ? formatQuery(queryType, checker) : '';
 
       const description = descriptionType
         ? getStringLiteralValue(descriptionType)
@@ -183,29 +228,24 @@ function generateDoc() {
 
       // YAML 항목 생성 시작
       yamlLines.push(
-        `${JSON.stringify(cleanApiPath)}:`,
-        `  description: ${JSON.stringify(description)}`,
-        `  return: ${JSON.stringify(returnType)}`,
+        `  ${JSON.stringify(`GET ${cleanApiPath}${query}`)}:`,
+        `    description: ${JSON.stringify(description)}`,
+        `    returns: ${JSON.stringify(returnType)}`,
       );
-
-      // query가 정의되어 있고 'never'가 아닌지 확인
-      if (
-        queryType &&
-        !(
-          queryType.flags & ts.TypeFlags.Never ||
-          checker.typeToString(queryType) === 'never'
-        )
-      ) {
-        const query = checker.typeToString(queryType);
-        yamlLines.push(`  query: ${JSON.stringify(query)}`);
-      }
     }
   };
 
   processConfig(apiConfigType);
 
   // 5. YAML 파일로 출력
-  const yamlContent = yamlLines.join('\n');
+  const yamlContent = [
+    'format: "exocortex-http/v1"',
+    'types: "@iamssen/exocortex"',
+    'syntax: "METHOD /path/{name:type}?{required:type,optional?:type}"',
+    'routes:',
+    ...yamlLines,
+    '',
+  ].join('\n');
   fs.writeFileSync(outputFile, yamlContent);
   console.log(`Generated API documentation at ${outputFile}`);
 }

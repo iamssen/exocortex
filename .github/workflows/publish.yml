@@ -14,9 +14,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: "npm"
+          cache: 'npm'
       - run: npm ci
-      - run: tsc --noEmit
+      - run: npm run type-check
       - run: npm run lint
       - run: npm run test
 
@@ -32,8 +32,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          registry-url: "https://npm.pkg.github.com"
-          cache: "npm"
+          registry-url: 'https://npm.pkg.github.com'
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - run: |
