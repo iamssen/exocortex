@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: 'npm'
+          cache: "npm"
       - run: npm ci
       - run: npm run type-check
       - run: npm run lint
@@ -32,10 +32,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          registry-url: 'https://npm.pkg.github.com'
-          cache: 'npm'
+          registry-url: "https://npm.pkg.github.com"
+          cache: "npm"
       - run: npm ci
-      - run: npm run build
       - run: |
           VERSION=$(node -p "require('./package.json').version")
           PUBLISHED_VERSION=$(npm view @iamssen/exocortex version 2>/dev/null || echo "0.0.0")
