@@ -1,4 +1,4 @@
-import type { Ratio } from '../nominal-types';
+import type { Ratio } from '../nominal-types.ts';
 
 export type Watch = Array<
   | { high_price: number }
