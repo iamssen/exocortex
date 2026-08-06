@@ -1,4 +1,4 @@
-import type { KRW, USD } from '../nominal-types.js';
+import type { KRW, USD } from '../nominal-types.ts';
 
 export interface Simulation {
   title: string;

@@ -1,4 +1,4 @@
-import type { Iso8601 } from './nominal-types.js';
+import type { Iso8601 } from './nominal-types.ts';
 
 export interface ExpiryData<T> {
   expires: Iso8601;
@@ -12,33 +12,33 @@ export interface VersionData<T> {
   data: T;
 }
 
-export * from './body/body.js';
+export * from './body/body.ts';
 
-export * from './finance/base-rates.js';
-export * from './finance/benchmark.js';
-export * from './finance/quote.js';
-export * from './finance/quote.projection.js';
-export * from './finance/valuation.js';
+export * from './finance/base-rates.ts';
+export * from './finance/benchmark.ts';
+export * from './finance/quote.projection.ts';
+export * from './finance/quote.ts';
+export * from './finance/valuation.ts';
 
-export * from './journal/journal.js';
+export * from './journal/journal.ts';
 
-export * from './moneybook/moneybook.js';
+export * from './moneybook/moneybook.ts';
 
-export * from './portfolio/balance.js';
-export * from './portfolio/bond.js';
-export * from './portfolio/deposit.js';
-export * from './portfolio/fx.js';
-export * from './portfolio/holding.js';
-export * from './portfolio/portfolio.js';
-export * from './portfolio/simulation.js';
-export * from './portfolio/trade.js';
-export * from './portfolio/watch.js';
+export * from './portfolio/balance.ts';
+export * from './portfolio/bond.ts';
+export * from './portfolio/deposit.ts';
+export * from './portfolio/fx.ts';
+export * from './portfolio/holding.ts';
+export * from './portfolio/portfolio.ts';
+export * from './portfolio/simulation.ts';
+export * from './portfolio/trade.ts';
+export * from './portfolio/watch.ts';
 
-export * from './portfolio-summary/portfolio-summary.js';
+export * from './portfolio-summary/portfolio-summary.ts';
 
-export * from './event.js';
-export * from './geolocation.js';
-export * from './link.js';
-export * from './nominal-types.js';
-export * from './rescuetime.js';
-export * from './weather.js';
+export * from './event.ts';
+export * from './geolocation.ts';
+export * from './link.ts';
+export * from './nominal-types.ts';
+export * from './rescuetime.ts';
+export * from './weather.ts';

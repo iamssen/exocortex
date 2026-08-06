@@ -1,4 +1,4 @@
-import type { Trade } from './trade.js';
+import type { Trade } from './trade.ts';
 
 export interface Holding<Currency extends number = number> {
   symbol: string;

@@ -1,5 +1,5 @@
-import type { ReverseGeocoding, Weather } from '../model/index.js';
-import type { API } from './types.js';
+import type { ReverseGeocoding, Weather } from '../model/index.ts';
+import type { API } from './types.ts';
 
 export type UtilsAPI = [
   API<

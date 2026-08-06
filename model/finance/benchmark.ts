@@ -1,4 +1,4 @@
-import type { Iso8601, Ratio } from '../nominal-types.js';
+import type { Iso8601, Ratio } from '../nominal-types.ts';
 
 export interface DV<T> {
   date: Iso8601;
@@ -25,11 +25,7 @@ export interface RecessionItem {
 }
 
 export type FearAndGreedRating =
-  | 'extreme fear'
-  | 'fear'
-  | 'neutral'
-  | 'greed'
-  | 'extreme greed';
+  'extreme fear' | 'fear' | 'neutral' | 'greed' | 'extreme greed';
 
 export interface FearAndGreedItem {
   date: Iso8601;

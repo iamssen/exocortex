@@ -10,8 +10,8 @@ import type {
   Rescuetime,
   RescuetimeActivity,
   VersionData,
-} from '../model/index.js';
-import type { API } from './types.js';
+} from '../model/index.ts';
+import type { API } from './types.ts';
 
 export type MyAPI = [
   API<

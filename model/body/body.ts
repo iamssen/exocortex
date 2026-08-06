@@ -1,4 +1,4 @@
-import type { ASC, Iso8601, IsoWeek, Timestamp } from '../nominal-types.js';
+import type { ASC, Iso8601, IsoWeek, Timestamp } from '../nominal-types.ts';
 
 export interface DayKcal {
   date: Iso8601;

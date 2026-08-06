@@ -1,5 +1,5 @@
-import type { ASC, Iso8601 } from '../nominal-types.js';
-import type { EquityValue } from './quote.js';
+import type { ASC, Iso8601 } from '../nominal-types.ts';
+import type { EquityValue } from './quote.ts';
 
 export interface EquityValueRecord
   extends

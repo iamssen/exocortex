@@ -1,4 +1,4 @@
-import type { APIConfig } from '../index.js';
+import type { APIConfig } from '../index.ts';
 
 type Routes = {
   [P in APIConfig[number] as P['__apiPath__']]: {

@@ -1,3 +1,3 @@
-import type { Watch } from './watch.js';
+import type { Watch } from './watch.ts';
 
 export type WatchInput = { [symbol: string]: Watch };

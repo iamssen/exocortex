@@ -1,4 +1,4 @@
-import type { Iso8601, Percent, Ratio } from '../nominal-types.js';
+import type { Iso8601, Percent, Ratio } from '../nominal-types.ts';
 
 export interface CurrentMarketValuation {
   date: Iso8601;

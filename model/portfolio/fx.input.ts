@@ -1,4 +1,4 @@
-import type { Iso8601, KRW } from '../nominal-types.js';
+import type { Iso8601, KRW } from '../nominal-types.ts';
 
 export type FXInput = Array<{
   date: Iso8601;

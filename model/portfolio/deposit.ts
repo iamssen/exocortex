@@ -1,4 +1,4 @@
-import type { Iso8601, Percent } from '../nominal-types.js';
+import type { Iso8601, Percent } from '../nominal-types.ts';
 
 export interface Deposit<Currency extends number = number> {
   name: string;

@@ -1,4 +1,4 @@
-import type { Iso8601 } from '../nominal-types.js';
+import type { Iso8601 } from '../nominal-types.ts';
 
 export interface Bond<Currency extends number = number> {
   name: string;

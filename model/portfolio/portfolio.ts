@@ -1,12 +1,12 @@
-import type { QuoteInfo } from '../finance/quote.js';
-import type { Iso8601, JPY, KRW, USD } from '../nominal-types.js';
-import type { Balances } from './balance.js';
-import type { Bonds } from './bond.js';
-import type { Deposits } from './deposit.js';
-import type { FX } from './fx.js';
-import type { Holding, Holdings } from './holding.js';
-import type { Simulation } from './simulation.js';
-import type { Watch } from './watch.js';
+import type { QuoteInfo } from '../finance/quote.ts';
+import type { Iso8601, JPY, KRW, USD } from '../nominal-types.ts';
+import type { Balances } from './balance.ts';
+import type { Bonds } from './bond.ts';
+import type { Deposits } from './deposit.ts';
+import type { FX } from './fx.ts';
+import type { Holding, Holdings } from './holding.ts';
+import type { Simulation } from './simulation.ts';
+import type { Watch } from './watch.ts';
 
 export type PortfolioMarket = 'us' | 'kr' | 'jp' | 'fx' | 'crypto';
 

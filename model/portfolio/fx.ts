@@ -1,5 +1,5 @@
-import type { KRW } from '../nominal-types.js';
-import type { Trade } from './trade.js';
+import type { KRW } from '../nominal-types.ts';
+import type { Trade } from './trade.ts';
 
 export interface FX<Currency extends number = number> {
   symbol: string;

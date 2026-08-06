@@ -1,4 +1,4 @@
-import type { ASC, Iso8601, IsoWeek } from './nominal-types.js';
+import type { ASC, Iso8601, IsoWeek } from './nominal-types.ts';
 
 export interface RescuetimeHistoryTimes {
   /** seconds */

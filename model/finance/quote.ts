@@ -4,14 +4,10 @@ import type {
   Percent,
   Ratio,
   Timezone,
-} from '../nominal-types.js';
+} from '../nominal-types.ts';
 
 export type QuoteType =
-  | 'CURRENCY'
-  | 'EQUITY'
-  | 'ETF'
-  | 'CRYPTOCURRENCY'
-  | 'INDEX';
+  'CURRENCY' | 'EQUITY' | 'ETF' | 'CRYPTOCURRENCY' | 'INDEX';
 
 export type StockExchangeCode = 'KS' | 'KQ' | 'NYS' | 'NSQ' | 'TYO' | 'AMX';
 

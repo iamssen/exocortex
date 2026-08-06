@@ -1,4 +1,4 @@
-import type { ASC, Iso8601 } from '../nominal-types.js';
+import type { ASC, Iso8601 } from '../nominal-types.ts';
 
 export interface MoneybookHistory {
   date: Iso8601;

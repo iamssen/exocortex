@@ -1,4 +1,4 @@
-import type { Iso8601, Percent } from './nominal-types.js';
+import type { Iso8601, Percent } from './nominal-types.ts';
 
 export type PrecipitationType = 'NONE' | 'UNKNOWN' | 'RAIN' | 'SNOW';
 
