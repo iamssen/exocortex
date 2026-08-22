@@ -6,7 +6,6 @@ import type {
   ExpiryData,
   FearAndGreed,
   InterestRateItem,
-  KospiPeItem,
   PeAndYields,
   Quote,
   QuoteEtfHoldings,
@@ -16,7 +15,7 @@ import type {
   Ratio,
   RecessionItem,
   USD,
-  VersionData,
+  VersionData
 } from '../model/index.ts';
 import type { API } from './types.ts';
 
@@ -69,13 +68,13 @@ export type FinanceAPI = [
     VersionData<EquityValueHistory>,
     { cacheOnly?: boolean }
   >,
-  API<
-    'KOSPI P/E',
-    '/finance/:benchmark',
-    `finance/kospi-pe`,
-    ExpiryData<KospiPeItem[]>,
-    { cacheOnly?: boolean }
-  >,
+  // API<
+  //   'KOSPI P/E',
+  //   '/finance/:benchmark',
+  //   `finance/kospi-pe`,
+  //   ExpiryData<KospiPeItem[]>,
+  //   { cacheOnly?: boolean }
+  // >,
   API<
     'Fear and Greed',
     '/finance/:benchmark',
@@ -84,9 +83,9 @@ export type FinanceAPI = [
     { cacheOnly?: boolean }
   >,
   API<
-    'Shiller P/E, SP500 P/E',
+    'Shiller P/E, SP500 P/E, Kospi P/E',
     '/finance/:benchmark',
-    `finance/${'shiller-pe' | 'sp500-pe'}`,
+    `finance/${'shiller-pe' | 'sp500-pe' | 'kospi-pe'}`,
     ExpiryData<DV<Ratio>[]>,
     { cacheOnly?: boolean }
   >,
